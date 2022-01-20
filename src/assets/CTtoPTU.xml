@@ -1,0 +1,974 @@
+<?xml version="1.0"?>
+<data>
+    <message name="CTtoPTU" desc="SESAM to PTU message">
+        <var addr="0" name="seconds" desc="(Seconds) Number of seconds elapsed since 1970-01-01 00:00:00 UTC" type="uint32" len="1"/>
+        <var addr="4" name="nanoSeconds" desc="(Nanoseconds) Current nanoseconds" type="uint32" len="1"/>
+        <bitfield addr="8" desc="">
+            <bit number="0" name="Pri_ActiveCab" desc="(Active Cab) Primary ATP Active" len="1"/>
+            <bit number="1" name="Pri_ATPType" desc="(Unit Type) Indicates which redundant ATC this is.  1:Primary 2:Secondary" len="2"/>
+            <bit number="3" name="Pri_Controlling" desc="(This ATC in Control) Indicates that this ATC is available to control the train.  0: Inactive 1: Active" len="1"/>
+            <bit number="4" name="Pri_RedunSysAvail" desc="(This ATC Operational)Indicates the availability of the other ATC system.  0: Unavailable 1: Available" len="1"/>
+            <bit number="5" name="Pri_AbsoluteVzero" desc="(Absolute Vzero) Indicates that the train is at the no motion state.  0: Inactive 1: Active" len="1"/>
+            <bit number="6" name="Pri_TrainVzero" desc="(Train Vzero) Indicates that the speed is &lt; 1.5 mph.  0: Inactive 1: Active" len="1"/>
+            <bit number="7" name="Pri_EB_BrakeActive" desc="(EB Request) Indicates that the ATP has asserted the Emergency Brake. 0: EB applied 1: EB not applied" len="1"/>
+        </bitfield>
+        <bitfield addr="9" desc="">
+            <bit number="0" name="Pri_FullServiceBrakeRequest" desc="(Full Service Brake) Indicates that the ATC is applying the FSB.  0: Inactive 1: Active" len="1"/>
+            <bit number="1" name="Pri_OverSpeedStatus" desc="(Over Speed Active) Indicates that the train is over speed.  0: under 1: over" len="1"/>
+            <bit number="2" name="Pri_SignalingPresent" desc="(Signaling Present) Indicates ATP is receiving wayside speed codes 0: No Signaling 1: Signaling present" len="2"/>
+            <bit number="4" name="Pri_ATP_CutTraction" desc="(ATP Tract Cut) Indicates that the traction cut signal is active.  0: Inactive 1: Active" len="1"/>
+            <bit number="5" name="Pri_DoorCloseReq" desc="(Door Close Req) Indicates that the door close request is active.  0: Inactive 1: Active" len="1"/>
+        </bitfield>
+        <bitfield addr="10" desc="">
+            <bit number="0" name="Pri_PAOvrRide" desc="(Override PA mode) Indicates that PA mode has been manually over ridden. 0: inactive 1:active" len="1"/>
+            <bit number="1" name="Pri_PAOvrRideRejected" desc="(Override of PA Rej) Indicates an attempt was made to manually over ride PA mode, but it was rejected.  0: inactive 1:active" len="1"/>
+            <bit number="2" name="Pri_TXBuzzerOn" desc="(TX Buzzer on) Sound the Buzzer in the Other ATC  0: inactive 1:active" len="1"/>
+        </bitfield>
+        <var addr="11" name="Pri_DepSpdCodeHldUpTmr" desc="(Dep Speed Code Holdup Timer) Departure speed code hold up timer. Decreases from 20 to 0." type="uint8" len="1"/>
+        <bitfield addr="12" desc="">
+            <bit number="0" name="Pri_MstCtrlDirection" desc="(MC Direction) Direction from the master controller. 0: Invalid, 1: Neutral, 2: Forward, 3: Reverse" len="2"/>
+            <bit number="2" name="Pri_MstCtrlDeadmanSts" desc="(MC DeadMan) State of the master controller deadman switch.  0: Inactive 1: Active" len="1"/>
+            <bit number="3" name="Pri_MstCtrlQuadrant" desc="(MC Position) Overall Position of the master-controller. 0: Off 1: Brake 2: Coast 3: Traction" len="2"/>
+        </bitfield>
+        <var addr="13" name="Pri_CntlMode" desc="(ATP Mode) ATP operating mode. 0: Off 1: CMC 2: ATO 3: CM 4: CD 5: TA 7: PA Override" type="uint8" len="1"/>
+        <var addr="14" name="Pri_DADepartureTime" desc="(DA Depart Time) DA Departure button press time, in seconds. Range: 2-10" type="uint8" len="1"/>
+        <var addr="15" name="Pri_sparebyte02" desc="(IC Test Speed) Inverter Cut Test speed, in mph. Range: 23, 28, 33" type="uint8" len="1"/>
+        <var addr="16" name="Pri_EnforcedSpeedLimit" desc="(Enf Speed Limit)  Enforced speed limit as a value. range: 0, 10, 15, 20, 25, 35, 45" type="uint8" len="1"/>
+        <var addr="17" name="Pri_TrainSpeed" desc="(Train Speed) The current train speed in 0.1 MPH" type="uint16" len="1"/>
+        <var addr="19" name="Pri_TrainSpeed6840" desc="(Tach2 Ch2D Speed) The speed from Tach2 Channel 2D in 0.1 MPH" type="uint16" len="1"/>
+        <var addr="21" name="Pri_TrainSpeed6522" desc="(Tach1 Ch1C Speed) The speed from Tach1 Channel 1C in 0.1 MPH" type="uint16" len="1"/>
+        
+        <bitfield addr="23" desc="">
+            <bit number="0" name="Pri_TachDirection" desc="(Tach Direction) Direction from the tachs via the MFB  0: unknown 1: Forward 2: Reverse 3: Bad" len="2"/>
+        </bitfield>
+        <var addr="24" name="Pri_ESLCode" desc="(Enforced Speed Limit Code) Speed limit currently enforced as an enumeration  0: Invalid 1: No code 2: F0 3:Invalid 4: F10 5: F15s 6: F15 7: F20 8: F25 9: F35 10: F45" type="uint8" len="1"/>
+        <var addr="25" name="Pri_InitMotionChkTime" desc="(Init Motion time) Time the initial motion check has been running. 0-8 seconds" type="uint8" len="1"/>
+        <var addr="26" name="Pri_DecelValueFwd" desc="(Decel Fwd Value) Raw decelerometer reading in the Forward Direction." type="uint8" len="1"/>
+        <var addr="27" name="Pri_DecelValueRev" desc="(Decel Rev Value) Raw decelerometer reading in the Reverse Direction." type="uint8" len="1"/>
+        <var addr="28" name="Pri_AccelDecelRate" desc="(Decel Rate) The current deceleration rate in 0.01 Meter/sec^2" type="int16" len="1"/>
+        <var addr="30" name="Pri_BrakeRateBank" desc="(Brake Rate Bank) The current braking rate banked value in m/s^2" type="int16" len="1"/>
+        <bitfield addr="32" desc="">
+            <bit number="0" name="Pri_BrakeAssuranceMet" desc="(Brake Assurance) Brake Assurance Status 0 = Met 1 = Not Met" len="1"/>
+            <bit number="1" name="Pri_DecelCalibrated" desc="(Decel Calibrated) Decelerometer Calibration Status 1= Calibrated 0 = Not Calibrated" len="1"/>
+            <bit number="2" name="Pri_EBFeedback" desc="(EB feedback) Status that the EB has been applied 0: EB Off 1:EB On" len="1"/>
+            <bit number="3" name="Pri_TractEnable" desc="(Tract Enable) Traction enable status. 0: cut, 1:Enabled" len="1"/>
+        </bitfield>
+        <var addr="33" name="Pri_Tachdvdt" desc="(tach dv/dt) acceleration computed from speed range -2 to 2" type="int16" len="1"/>
+        <var addr="35" name="Pri_SpareByte04" desc="(SB 4) Unused" type="uint8" len="1"/>
+        <var addr="36" name="Pri_SpeedLimitCode" desc="(Spd Limit Code) The current speed code from the Wayside. 0: NO_CODE 1: F0s 2: F0 3: Fvd 4: F10 5: F15s 6: F15 7: F20 8: F25 9: F35 10: F45" type="uint8" len="1"/>
+        <var addr="37" name="Pri_SpeedCodePeriod" desc="(Speed Code Per) The period of the last received speed code in 0.0001 seconds." type="uint16" len="1"/>
+        <bitfield addr="39" desc="">
+            <bit number="0" name="Pri_SpeedCodeDetected" desc="(Speed Code Det) Indicates the presence of a speed code. 0 = code missing 1 = code present" len="1"/>
+            <bit number="1" name="Pri_StationSigDet" desc="(Station Sig Det) Indicates the presence of a station carrier signal 0 = Absent 1 = Present" len="1"/>
+            <bit number="2" name="Pri_Mod4khz" desc="(Mod 4 Khz) Indicates the presence of modulated station carrier signal. 0: no signal 1: steady 4Khz 2: 45Hz Moduation 3: 35Hz Modulation" len="2"/>
+            <bit number="4" name="Pri_CoastBeaconDetected" desc="(Coast Beacon) Indicates the detection of a coasting beacon. 0 = Absent 1 = Present" len="1"/>
+            <bit number="5" name="Pri_TrkCirBoundDetect" desc="(Track Circuit Bound) Indicates the presence of a track circuit boundary. 0 = Absent 1 = Present" len="1"/>
+        </bitfield>
+        <bitfield addr="40" desc="">
+            <bit number="0" name="Pri_SStopBeacon1Det" desc="(Stop Beacon 1) Station stop beacon 1 detected. 0: Absent 1: Present" len="1"/>
+            <bit number="1" name="Pri_SStopBeacon2Det" desc="(Stop Beacon 2) Station stop beacon 2 detected. 0: Absent 1: Present" len="1"/>
+            <bit number="2" name="Pri_SStopBeacon3Det" desc="(Stop Beacon 3) Station stop beacon 3 detected. 0: Absent 1: Present" len="1"/>
+            <bit number="3" name="Pri_OpStopBea1Det" desc="(OP Beacon 1) Operational stop beacon 1 detected. 0: Absent 1: Present" len="1"/>
+            <bit number="4" name="Pri_OpStopBea2Det" desc="(OP Beacon 2) Operational stop beacon 2 detected. 0: Absent 1: Present" len="1"/>
+        </bitfield>
+        <bitfield addr="41" desc="">
+            <bit number="0" name="Pri_CSRD1_HealthStatus" desc="(CSRD 1 Health) CSRD CPU 1 Health Status. 0: OK 1: Informational Event 2: Warning Event 3: Failure Event" len="2"/>
+            <bit number="2" name="Pri_CSRD2_HealthStatus" desc="(CSRD 2 Health) CSRD CPU 2 Health Status. 0: OK 1: Informational Event 2: Warning Event 3: Failure Event" len="2"/>
+        </bitfield>
+        <var addr="42" name="Pri_PwireEffort" desc="(PWire Current) The P-wire current (Effort request) in 0.1 mA" type="uint16" len="1"/>
+        <var addr="44" name="Pri_ATODistanceToStop" desc="(ATO Stop Dist) The distance to the station stop in 0.001 meters" type="int16" len="1"/>
+        <bitfield addr="46" desc="">
+            <bit number="0" name="Pri_StationStopActive" desc="(Station Stop) Indication that the ATO is performing a station stop 0: not SS 1: SS" len="1"/>
+            <bit number="1" name="Pri_ATO_SkipStationStopAllowed" desc="(ATO Skip Stat Stop All) ATP Skip Station Stop Allowed 0: Not Allowed, 1: Allowed" len="1"/>
+            <bit number="2" name="Pri_ATOOperational" desc="(ATO Operational) ATO operational status 0: not operating 1: operating" len="1"/>
+            <bit number="3" name="Pri_ATOCoastInd" desc="(ATO Coast) ATO in coast  0: no 1: yes" len="1"/>
+            <bit number="4" name="Pri_ATOTractInd" desc="(ATO Traction) ATO in traction  0: no 1: yes" len="1"/>
+            <bit number="5" name="Pri_DAButtonSts" desc="(DA Button) Automatic departure button status. 0: OFF 1: ON" len="1"/>
+            <bit number="6" name="Pri_ProgStopInd" desc="(Prg Stop Ind)  Program stop indication.  0= no program stop underway, 1 either POS or PSS underway" len="1"/>
+        </bitfield>
+        <bitfield addr="47" desc="">
+            <bit number="0" name="Pri_ATOBrakeInd" desc="(ATO Brake) ATO is requesting brakes. 0: no Brakes, 1: Brake Request" len="1"/>
+            <bit number="1" name="Pri_CancelStationStopInd" desc="(ATO Skip Stat Stop Act)  ATO Skip Station Stop Active 0: Not Active, 1: Active" len="1"/>
+            <bit number="2" name="Pri_DepartureInd" desc="(ATO Departure Ind) The ATO will depart the station 0: Not Departing, 1: Departing" len="1"/>
+            <bit number="3" name="Pri_ATO_SkipStationStopIgnored" desc="(Skip Station Stop Ignored) ATP Skip Station Stop Ignored 0: Not Ignored, 1: Ignored" len="1"/>
+        </bitfield>
+        <var addr="48" name="Pri_SpareByte05" desc="(SB 5) Unused" type="uint8" len="1"/>
+        <var addr="49" name="Pri_DepartDistanceFromStation" desc="(ATP Depart Distance) The Stop in Station Enable distance from the station in cm" type="uint16" len="1"/>
+        <bitfield addr="51" desc="">
+            <bit number="0" name="Pri_CanStopInStation" desc="(Can Stop In Stat) Indication that the train can stop inside the station. 0: Not Stop inside station 1: Stop Inside station" len="1"/>
+        </bitfield>
+        <var addr="52" name="Pri_ATOspeed" desc="(ATO speed) ATP speed in m/s. (0- 30)" type="uint16" len="1"/>
+        <bitfield addr="54" desc="">
+            <bit number="0" name="Pri_CSRD_SelfTestResult" desc="(CSRD Test Res) Indicates the results of CSRD&#39;s self test. 0: no result 1: test passed 2: test failed" len="2"/>
+            <bit number="2" name="Pri_spareTestResult" desc="(ST spare) unused" len="2"/>
+            <bit number="4" name="Pri_ATO_SelfTestResult" desc="(ATO Test) Indicates the results of ATO&#39;s self test. 0: no result 1: test passed 2: test failed" len="2"/>
+            <bit number="6" name="Pri_QVM_SelfTestResult" desc="(QVM Test) Indicates the results of QVM&#39;s self test. 0: no result 1: test passed 2: test failed" len="2"/>
+        </bitfield>
+        <bitfield addr="55" desc="">
+            <bit number="0" name="Pri_ATPSelfTestStatus" desc="(ATP Test Status) the status of a self test  | N/A, running, Complete" len="2"/>
+        </bitfield>
+        <var addr="56" name="Pri_InvCutTestState" desc="(Inv Cut Test State)  state of the inverter cut test. 0: initial, 1: test running, 2: pass, 3: fail" type="uint8" len="1"/>
+        <var addr="57" name="Pri_TractCutTestState" desc="(Tract Cut Test State) state of the traction cut test.  0: initial, 1: test running, 2: pass, 3: test aborted, 4: test failed" type="uint8" len="1"/>
+        <var addr="58" name="Pri_InvCutTestRes" desc="(Inv Cut Test Res) Inverter cut test results. 0: initial, 2: pass, 3: fail" type="uint8" len="1"/>
+        <var addr="59" name="Pri_TractCutTestRes" desc="(Tract Cut Test Res) Traction cut test results. 0: initial, 2: pass, 3: test aborted, 4: test failed" type="uint8" len="1"/>
+        <var addr="60" name="Pri_TrCutTestAbortCount" desc="(Tract Cut Tst Aborts) Count of aborted traction cut test. 0-255." type="uint8" len="1"/>
+        <bitfield addr="61" desc="">
+            <bit number="0" name="Pri_ATP_CPU_Error" desc="(ATP CPU Err) An ATP CPU error has been detected. 0: No Error 1: Error" len="1"/>
+            <bit number="1" name="Pri_DecelerometerError" desc="(Decel Err) A Decelerometer error has been detected. 0: No Error 1: Error" len="1"/>
+            <bit number="2" name="Pri_VitalInput_2_PCB_Error" desc="(Vin 2 PCB Err) A Vital input board #2 error has been detected. 0: No Error 1: Error" len="1"/>
+            <bit number="3" name="Pri_VitalInput_1_PCB_Error" desc="(Vin 1 PCB Err) A Vital input board #1 error has been detected. 0: No Error 1: Error" len="1"/>
+            <bit number="4" name="Pri_NonVitalPCB_Error" desc="(NV PCB Err) A NonVital output board error has been detected. 0: No Error 1: Error" len="1"/>
+            <bit number="5" name="Pri_MultifunctionPCB_Error" desc="(MF PCB Err) A Multifunction PCB error has been detected. 0: No Error 1: Error" len="1"/>
+            <bit number="6" name="Pri_QVMControl1XChk" desc="(QVM Ctrl 1 XChk) A QVM control 1 crosscheck error has been detected. 0: No Error 1: Error" len="1"/>
+        </bitfield>
+        <bitfield addr="62" desc="">
+            <bit number="0" name="Pri_QVMControl2XChk" desc="(QVM Ctrl 2 XChk) A QVM control 2 crosscheck error has been detected. 0: No Error 1: Error" len="1"/>
+            <bit number="1" name="Pri_CSRD_ModuleFailure" desc="(CSRD Module Fail) A CSRD module failure error has been detected. 0: No Error 1: Error" len="1"/>
+            <bit number="2" name="Pri_BrakeRateNotAchieved" desc="(Brake Rate Not Ach) The required brake has not been met error.  0: No error 1: Error" len="1"/>
+            <bit number="3" name="Pri_LossofSignaling" desc="(Lost Signal) Loss of signaling Error.   0: No Error 1: Error" len="1"/>
+            <bit number="4" name="Pri_CSRD_testError" desc="(CSRD test error) The CSRD has failed its test 0: OK, 1: error" len="1"/>
+            <bit number="5" name="Pri_ModeNotAccepted" desc="(Mode Entry Error) The ATP did not enter the requested mode.  0: No Error 1: Error" len="1"/>
+        </bitfield>
+        <bitfield addr="63" desc="">
+            <bit number="0" name="Pri_InvalidUnitTypeError" desc="(Invalid Unit Err) The ATP unit type is invalid. 0: No Error 1: Error" len="1"/>
+            <bit number="1" name="Pri_UnstableUnitTypeError" desc="(Unstable Unit Err) The ATP unit type is unstable. 0: No Error 1: Error" len="1"/>
+            <bit number="2" name="Pri_ModeChangeMotion" desc="(Mode Change Err) The ATP mode has changed while the train is moving. 0: No Error 1: Error" len="1"/>
+            <bit number="3" name="Pri_DirChangeInMotionError" desc="(Direction Change Err) The direction indication from the master controller has changed while the train is moving. 0: No Error 1: Error" len="1"/>
+            <bit number="4" name="Pri_Fwd_RevXChkError" desc="(Fwd Rev XChk Err) The forward reverse crosscheck has failed. 0: No Error 1: Error" len="1"/>
+            <bit number="5" name="Pri_OperatingModeXChkError" desc="(OP Mode XChk Err) The operating mode crosscheck has failed. 0: No Error 1: Error" len="1"/>
+            <bit number="6" name="Pri_DirMatchError" desc="(Dir Mismatch Err) There was a direction mismatch error. 0: No Error 1: Error" len="1"/>
+            <bit number="7" name="Pri_DecelUnstableError" desc="(Decel Unstable) An unstable decelerometer event has been detected.  0: No Error 1: Error" len="1"/>
+        </bitfield>
+        <bitfield addr="64" desc="">
+            <bit number="0" name="Pri_ATP_PA_CommFailure" desc="(ATP PA Comm Fail) The data link between the ATP and ATO is down. 0: No Error 1: Error" len="1"/>
+            <bit number="1" name="Pri_ATP_CSRD_CommFailure" desc="(ATP CSRD Comm Fail) The data link between the ATP and CSRD is down. 0: No Error 1: Error" len="1"/>
+            <bit number="2" name="pri_comsp01" desc="(com sp 1) unused" len="1"/>
+            <bit number="3" name="pri_MCStatusError" desc="(MC status Error) A master controller status error detected. 0: No Error 1: Error" len="1"/>
+            <bit number="4" name="Pri_UnexpBuzzerReq" desc="(Unex Buzzer Req) An unexpected buzzer request was received. 0: No Error 1: Error" len="1"/>
+        </bitfield>
+        <bitfield addr="65" desc="">
+            <bit number="0" name="Pri_RollAwayDetect" desc="(Rollaway) A roll-away condition has been detected. 0: No Error 1: Error" len="1"/>
+            <bit number="1" name="Pri_OverspeedEventStatus" desc="(Overspeed Err) An over speed error has been detected. 0: No Error 1: Error" len="1"/>
+            <bit number="2" name="Pri_LossOfSpeedSensor" desc="(Speed Sensor Loss) A speed sensor loss error has been detected. 0: No Error 1: Error" len="1"/>
+            <bit number="3" name="Pri_SpeedSensorMismatch" desc="(Spd Sens Mismatch) A speed sensor mismatch error has been detected. 0: No Error 1: Error" len="1"/>
+            <bit number="4" name="Pri_InitialMotionChkError" desc="(Init Motion Err) An initial motion check error has been detected. 0: No Error 1: Error" len="1"/>
+            <bit number="5" name="Pri_F10F15sDropEB" desc="(F10 F15s Drop) An F10 or F15s check has caused an emergency brake application. 0: No Error 1: Error" len="1"/>
+        </bitfield>
+        <bitfield addr="66" desc="">
+            <bit number="0" name="Pri_Traction_En_XChkError" desc="(Tract Enable XChk) A traction enable cross check error has been detected.  0: No Error 1: Error" len="1"/>
+            <bit number="1" name="Pri_UnexpectedTractReqError" desc="(Unexp Trac Req Err) An unexpected traction request has been detected.  0: No Error 1: Error" len="1"/>
+            <bit number="2" name="Pri_EBXChk" desc="(EB XChk Err) The emergence brake cross check has failed.  0: No Error 1: Error" len="1"/>
+            <bit number="3" name="Pri_BrakeAssurXChkError" desc="(Brake Assur XChk Err) The brake assurance cross check has failed.  0: No Error 1: Error" len="1"/>
+            <bit number="4" name="Pri_V0_DecelXChkError" desc="(NoMo Decel XChk) The Vzero absolute decelerometer crosscheck has failed.  0: No Error 1: Error" len="1"/>
+        </bitfield>
+        <bitfield addr="67" desc="">
+            <bit number="0" name="Pri_CancSStopBtnStk" desc="(Cancel SStop Btn Stk) A stuck cancel station stop button error has been detected.  0: No Error 1: Error" len="1"/>
+            <bit number="1" name="Pri_DTAButtonStuck" desc="(DTA Button Stuck) A stuck DTA button error has been detected.  0: No Error 1: Error" len="1"/>
+            <bit number="2" name="Pri_DAButtonStuck" desc="(DA Button Stuck) A stuck DA button error has been detected.  0: No Error 1: Error" len="1"/>
+            <bit number="3" name="Pri_OpStopInitErr" desc="(OP Stop Init Err) An operational stop initialization error has been detected.  0: No Error 1: Error" len="1"/>
+            <bit number="4" name="Pri_CoastComndRefused" desc="(Coast Cmd Refused) A coast command has been refused.  0: No Error 1: Error" len="1"/>
+            <bit number="5" name="Pri_StStopSeqError" desc="(SStop Seq Err) A station stop sequence error has been detected.  0: No Error 1: Error" len="1"/>
+        </bitfield>
+        <bitfield addr="68" desc="">
+            <bit number="0" name="Pri_MissingBeacon" desc="(Missing Beacon) Missing beacon error.  0: No Error 1: Error" len="1"/>
+            <bit number="1" name="Pri_InvalidBeacon" desc="(Invalid Beacon) Invalid Beacon Error.  0: No Error 1: Error" len="1"/>
+            <bit number="2" name="Pri_QVMtestError" desc="(QVM test error) the QVM test has failed 0: No Error 1: Error" len="1"/>
+            <bit number="3" name="Pri_SpeedCapError" desc="(Speed Cap Error) the speed cap has been exceeded. 0: No Error 1: Error" len="1"/>
+        </bitfield>
+        <bitfield addr="69" desc="">
+            <bit number="0" name="Pri_InvCutXChkError" desc="(Inv Cut XChk) An Inverter cut cross check error has been detected.  0: No Error 1: Error" len="1"/>
+        </bitfield>
+        <var addr="70" name="Pri_ATOSysEvent" desc="(ATO Sys Event) Spare ATO event" type="uint8" len="3"/>
+        <bitfield addr="73" desc="">
+            <bit number="0" name="Pri_ManualDoorCloseStuckError" desc="(Door Close Btn Stk) A stuck door close button error has been detected.  0: No Error 1: Error" len="1"/>
+            <bit number="1" name="Pri_DoorOpenSequenceError" desc="(Door Open Seq Err) A door open sequence error has been detected.  0: No Error 1: Error" len="1"/>
+            <bit number="2" name="Pri_DoorModeXCheckError" desc="(Door Mode Xchk)  a door mode cross check error has been detected. 0: No Error 1: Error" len="1"/>
+            <bit number="3" name="Pri_DoorEnLeftXCheckError" desc="(Door En Left Xchk) a left door enable cross check has been detected.  0: No Error 1: Error" len="1"/>
+            <bit number="4" name="Pri_DoorEnRightXCheckError" desc="(Door En Right Xchk) a right door enable cross check has been detected.  0: No Error 1: Error" len="1"/>
+            <bit number="5" name="Pri_DoorBypassXCheckError" desc="(Door En Bypass Xchk) a door enable bypass cross check has been detected.  0: No Error 1: Error" len="1"/>
+        </bitfield>
+        <var addr="74" name="Pri_TractCutSpeed" desc="(Tr Cut Test Speed) Speed threshold to run the traction cut test. 23, 28, or 33 mph * 10" type="uint16" len="1"/>
+        <bitfield addr="76" desc="">
+            <bit number="0" name="Pri_RawAcab" desc="(Raw Act Cab) Raw input for Active Cab. 0: Off 1: On" len="1"/>
+            <bit number="1" name="Pri_RawATOMode" desc="(Raw ATO Mode) Raw input indicating ATO mode. 0: Off 1: On" len="1"/>
+            <bit number="2" name="Pri_RawCMCmode" desc="(Raw CMC Mode) Raw input indicating CMC mode. 0: Off 1: On" len="1"/>
+            <bit number="3" name="Pri_RawCMCwoCCV" desc="(Raw CMC no CCV) Raw input indicating CMC mode without CCV.  0: Off 1: On" len="1"/>
+            <bit number="4" name="Pri_RawCDMode" desc="(Raw CD Mode) Raw input indicating CD mode. 0: Off 1: On" len="1"/>
+            <bit number="5" name="Pri_RawTAmode" desc="(Raw TA Mode) Raw input indicating TA mode. 0: Off 1: On" len="1"/>
+            <bit number="6" name="Pri_RawMCFwd" desc="(Raw MC Fwd) Raw input indicating Forward from the master controller.  0: Off 1: On" len="1"/>
+            <bit number="7" name="Pri_RawMCRev" desc="(Raw MC Rev) Raw input indicating Reverse from the master controller.  0: Off 1: On" len="1"/>
+        </bitfield>
+        <bitfield addr="77" desc="">
+            <bit number="0" name="Pri_RawDAin" desc="(Raw DA In) Raw input DA.  0: Off 1: On" len="1"/>
+            <bit number="1" name="Pri_RawCancelSS" desc="(Raw Cancel SS) Raw input Cancel Station Stop.  0: Off 1: On" len="1"/>
+            <bit number="2" name="Pri_RawDTA" desc="(Raw DTA In) Raw input DTA.  0: Off 1: On" len="1"/>
+            <bit number="3" name="Pri_RawMC_trac" desc="(Raw MC Trac) Raw input MC Traction Quadrant.  0: Off 1: On" len="1"/>
+            <bit number="4" name="Pri_RawMC_ntrac" desc="(Raw MC Not Trac) Raw input MC Not Traction Quadrant.  0: Off 1: On" len="1"/>
+            <bit number="5" name="Pri_RawMC_Brake" desc="(Raw MC Brake) Raw input MC Brake Quadrant.  0: Off 1: On" len="1"/>
+            <bit number="6" name="Pri_RawInvCutFB" desc="(Raw Inv Cut FB) Raw input inverter cut feedback (from traction).  0: Off 1: On" len="1"/>
+            <bit number="7" name="Pri_vin1_bits15" desc="(Vin 1 Bit 15) Vital input board 1 Bit 15.  0: Off 1: On" len="1"/>
+        </bitfield>
+        <bitfield addr="78" desc="">
+            <bit number="0" name="Pri_RawMC_Deadman" desc="(Raw MC Deadman) Raw input MC deadman.  0: Off 1: On" len="1"/>
+            <bit number="1" name="Pri_RawADCL" desc="(Raw All Doors Close Lock) Raw input all doors closed and locked.  0: Off 1: On" len="1"/>
+            <bit number="2" name="Pri_RawDoorAAuto" desc="(Raw Door Auth Auto) Raw input door authorization for Auto.  0: Off 1: On" len="1"/>
+            <bit number="3" name="Pri_RawDoorClose" desc="(Raw Door Close Req) Raw input door close request.  0: Off 1: On" len="1"/>
+            <bit number="4" name="Pri_RawEBfbk" desc="(Raw EB Fdbk) Raw input EB feedback.  0: Off 1: On" len="1"/>
+            <bit number="5" name="Pri_RawNoTracCut" desc="(Raw No Trac Cut) Raw input no traction cut.  0: Off 1: On" len="1"/>
+            <bit number="6" name="Pri_RawBA" desc="(Raw BA Trainline) Raw input BA trainline.  0: Off 1: On" len="1"/>
+            <bit number="7" name="Pri_RawQVM1Chk" desc="(Raw QVM 1 Check) Raw input QVM 1 check.  0: Off 1: On" len="1"/>
+        </bitfield>
+        <bitfield addr="79" desc="">
+            <bit number="0" name="Pri_RawQVM2Chk" desc="(Raw QVM 2 Check) Raw input QVM 2 check.  0: Off 1: On" len="1"/>
+            <bit number="1" name="Pri_RawATCAlive" desc="(Raw Other ATC Alive) Raw input ATC Alive.  0: Off 1: On" len="1"/>
+            <bit number="2" name="Pri_RawATConline" desc="(Raw Other ATC Online) Raw input ATC on line.  0: Off 1: On" len="1"/>
+            <bit number="3" name="Pri_RawDoorAMan" desc="(Raw Manual Door Mode) Raw input doors authorized for manual open.  0: Off 1: On" len="1"/>
+            <bit number="4" name="Pri_RawSpIN2" desc="(Raw Spare 2 In) Raw input Spare in 2.  0: Off 1: On" len="1"/>
+            <bit number="5" name="Pri_RawSpIN3" desc="(Raw Spare 3 In) Raw input Spare in 3.  0: Off 1: On" len="1"/>
+            <bit number="6" name="Pri_RawPri" desc="(Raw Pri Ind) Vital input board 2 Bit 14.  0: Off 1: On" len="1"/>
+            <bit number="7" name="Pri_RawSec" desc="(Raw Sec Ind) Vital input board 2 Bit 15.  0: Off 1: On" len="1"/>
+        </bitfield>
+        <bitfield addr="80" desc="">
+            <bit number="0" name="Pri_RawTREnBkCk" desc="(Raw Tract En) Raw input traction enable back check.  0: Off 1: On" len="1"/>
+            <bit number="1" name="Pri_RawRDoorEnBCk" desc="(Raw RDoor En) Raw input right Door Enable back check.  0: Off 1: On" len="1"/>
+            <bit number="2" name="Pri_RawLDoorEnBCk" desc="(Raw LDoor En) Raw input left Door Enable back check.  0: Off 1: On" len="1"/>
+            <bit number="3" name="Pri_mfin_bits3" desc="(MFin Bit 3) Multifunction board input Bit 3.  0: Off 1: On" len="1"/>
+            <bit number="4" name="Pri_RawBABckCk" desc="(Raw BA Bck Ch) Raw input BA back check.  0: Off 1: On" len="1"/>
+            <bit number="5" name="Pri_RawInvCutBCk" desc="(Raw Inv Cut Bck Chk) Inverter cut back check for interim solution 0: Off 1: On" len="1"/>
+            <bit number="6" name="Pri_RawNoDrEnBCk" desc="(Raw NoDoor En) Raw No door enable bypass back check  0: Off 1: On" len="1"/>
+            <bit number="7" name="Pri_mfin_bits7" desc="(MFin Bit 7) Multifunction board input Bit 7.  0: Off 1: On" len="1"/>
+        </bitfield>
+        <bitfield addr="81" desc="">
+            <bit number="0" name="Pri_RawQVMCtrl1" desc="(Raw QVM 1 Control) QVM Control 1 output.  0: Off 1: On" len="1"/>
+            <bit number="1" name="Pri_RawQVMCtrl2" desc="(Raw QVM 2 Control) QVM Control 2 output.  0: Off 1: On" len="1"/>
+            <bit number="2" name="Pri_nvout_bits2" desc="(NVout Bit 2) Non-Vital output board Bit 2. 0: Off 1: 0n" len="1"/>
+            <bit number="3" name="Pri_nvout_bits3" desc="(NVout Bit 3) Non-Vital output board Bit 3. 0: Off 1: 0n" len="1"/>
+            <bit number="4" name="Pri_nvout_bits4" desc="(NVout Bit 4) Non-Vital output board Bit 4. 0: Off 1: 0n" len="1"/>
+            <bit number="5" name="Pri_nvout_bits5" desc="(NVout Bit 5) Non-Vital output board Bit 5. 0: Off 1: 0n" len="1"/>
+            <bit number="6" name="Pri_nvout_bits6" desc="(NVout Bit 6) Non-Vital output board Bit 6. 0: Off 1: 0n" len="1"/>
+            <bit number="7" name="Pri_nvout_bits7" desc="(NVout Bit 7) Non-Vital output board Bit 7. 0: Off 1: 0n" len="1"/>
+        </bitfield>
+        <bitfield addr="82" desc="">
+            <bit number="0" name="Pri_RawPAovrd" desc="(Raw PA Override) PA override indication output 0: Off 1: On" len="1"/>
+            <bit number="1" name="Pri_RawATOTrReq" desc="(RaW ATO Trac Req) ATO traction request output 0: Off 1: On" len="1"/>
+            <bit number="2" name="Pri_RawNoPsnBrake" desc="(Raw No Psngr Brake) Passenger Service Brake Enable 0: Off 1: On" len="1"/>
+            <bit number="3" name="Pri_RawBuzzer" desc="(Raw Buzzer) Buzzer Output 0: Off 1: On" len="1"/>
+            <bit number="4" name="Pri_RawEBReset" desc="(Raw EB Reset) Emergency Brake Reset Output 0: Off 1: On" len="1"/>
+            <bit number="5" name="Pri_nvout_bits13" desc="(NVout Bit 13) Non-Vital output board Bit 13. 0: Off 1: 0n" len="1"/>
+            <bit number="6" name="Pri_nvout_bits14" desc="(NVout Bit 14) Non-Vital output board Bit 14. 0: Off 1: 0n" len="1"/>
+            <bit number="7" name="Pri_RawSignalPres" desc="(Raw Signaling Present) Wayside Signaling Present. 0: Off 1: 0n" len="1"/>
+        </bitfield>
+        <bitfield addr="83" desc="">
+            <bit number="0" name="Pri_nvout_bits16" desc="(NVout Bit 16) Non-Vital output board Bit 16. 0: Off 1: 0n" len="1"/>
+            <bit number="1" name="Pri_nvout_bits17" desc="(NVout Bit 17) Non-Vital output board Bit 17. 0: Off 1: 0n" len="1"/>
+            <bit number="2" name="Pri_nvout_bits18" desc="(NVout Bit 18) Non-Vital output board Bit 18. 0: Off 1: 0n" len="1"/>
+            <bit number="3" name="Pri_nvout_bits19" desc="(NVout Bit 19) Non-Vital output board Bit 19. 0: Off 1: 0n" len="1"/>
+            <bit number="4" name="Pri_nvout_bits20" desc="(NVout Bit 20) Non-Vital output board Bit 20. 0: Off 1: 0n" len="1"/>
+            <bit number="5" name="Pri_nvout_bits21" desc="(NVout Bit 21) Non-Vital output board Bit 21. 0: Off 1: 0n" len="1"/>
+            <bit number="6" name="Pri_nvout_bits22" desc="(NVout Bit 22) Non-Vital output board Bit 22. 0: Off 1: 0n" len="1"/>
+            <bit number="7" name="Pri_nvout_bits23" desc="(NVout Bit 23) Non-Vital output board Bit 23. 0: Off 1: 0n" len="1"/>
+        </bitfield>
+        <bitfield addr="84" desc="">
+            <bit number="0" name="Pri_nvout_bits24" desc="(NVout Bit 24) Non-Vital output board Bit 24. 0: Off 1: 0n" len="1"/>
+            <bit number="1" name="Pri_nvout_bits25" desc="(NVout Bit 25) Non-Vital output board Bit 25. 0: Off 1: 0n" len="1"/>
+            <bit number="2" name="Pri_nvout_bits26" desc="(NVout Bit 26) Non-Vital output board Bit 26. 0: Off 1: 0n" len="1"/>
+            <bit number="3" name="Pri_RawPwireEn" desc="(Raw PWire En) P-wire output enable.  0: Off 1: On" len="1"/>
+            <bit number="4" name="Pri_nvout_bits28" desc="(NVout Bit 28) Non-Vital output board Bit 28. 0: Off 1: 0n" len="1"/>
+            <bit number="5" name="Pri_nvout_bits29" desc="(NVout Bit 29) Non-Vital output board Bit 29. 0: Off 1: 0n" len="1"/>
+            <bit number="6" name="Pri_RawATCInCntl" desc="(Raw ATC Ctrl Out) ATC in control output.  0: Off 1: On" len="1"/>
+            <bit number="7" name="Pri_RawATCOnOut" desc="(Raw ATC Online) ATC on line output.  0: Off 1: On" len="1"/>
+        </bitfield>
+        <bitfield addr="85" desc="">
+            <bit number="0" name="Pri_RawEB" desc="(Raw EB Request) Emergency Brake Request. 0: Off 1: On" len="1"/>
+            <bit number="1" name="Pri_RawVzero" desc="(Raw VZero) Vzero output.  0: Off 1: On" len="1"/>
+            <bit number="2" name="Pri_RawTracEn" desc="(Raw Trac Enable) Traction Enable 0: Off 1: On" len="1"/>
+            <bit number="3" name="Pri_RawRdoorEn" desc="(Raw RDoor En) Right door enable output 0: Off 1: On" len="1"/>
+            <bit number="4" name="Pri_RawLdoorEn" desc="(Raw LDoor En) Left door enable output 0: Off 1: On" len="1"/>
+            <bit number="5" name="Pri_RawNoDrEnByps" desc="(Raw No Door Bypass) No door enable bypass. 0: Off 1: On" len="1"/>
+            <bit number="6" name="Pri_RawBAOut" desc="(Raw BA Out) BA achieved output.  0: Off 1: On" len="1"/>
+            <bit number="7" name="Pri_RawInvCut" desc="(Raw Inverter Cut) Inverter Cut output.  0: Off 1: On" len="1"/>
+        </bitfield>
+        <var addr="86" name="Pri_ATPRevMajor" desc="(ATP Rev Major) ATP major revision value" type="uint8" len="1"/>
+        <var addr="87" name="Pri_ATPRevMinor" desc="(ATP Rev Minor) ATP minor revision value" type="uint8" len="1"/>
+        <var addr="88" name="Pri_ATPRevTest" desc="(ATP Rev Test) ATP test revision value" type="uint8" len="1"/>
+        <var addr="89" name="Pri_ATPRevUnused" desc="(ATP Rev Unused) ATP unused revision value" type="uint8" len="1"/>
+        <var addr="90" name="Pri_ATORevMajor" desc="(ATO Rev Major) ATO major revision value" type="uint8" len="1"/>
+        <var addr="91" name="Pri_ATORevMinor" desc="(ATO Rev Minor) ATO minor revision value" type="uint8" len="1"/>
+        <var addr="92" name="Pri_ATORevTest" desc="(ATO Rev Test) ATO test revision value" type="uint8" len="1"/>
+        <var addr="93" name="Pri_ATORevUnused" desc="(ATO Rev Unused) ATO unused revision value" type="uint8" len="1"/>
+        <var addr="94" name="Pri_CSRDAppRevMajor" desc="(CSRD App Rev Maj) CSRD Application major revision value" type="uint8" len="1"/>
+        <var addr="95" name="Pri_CSRDAppRevMinor" desc="(CSRD App Rev Min) CSRD Application minor revision value" type="uint8" len="1"/>
+        <var addr="96" name="Pri_CSRDAppRevTest" desc="(CSRD App Rev Test) CSRD Application test revision value" type="uint8" len="1"/>
+        <var addr="97" name="Pri_CSRDAppRevUnused" desc="(CSRD App Rev Un) CSRD Application unused revision value" type="uint8" len="1"/>
+        <var addr="98" name="Pri_CSRDCfgRevMajor" desc="(CSRD Cfg Rev Maj) CSRD Configuration major revision value" type="uint8" len="1"/>
+        <var addr="99" name="Pri_CSRDCfgRevMinor" desc="(CSRD Cfg Rev Min) CSRD Configuration minor revision value" type="uint8" len="1"/>
+        <var addr="100" name="Pri_CSRDCfgRevTest" desc="(CSRD Cfg Rev Test) CSRD Configuration test revision value" type="uint8" len="1"/>
+        <var addr="101" name="Pri_CSRDCfgRevUnused" desc="(CSRD Cfg Rev Un) CSRD Configuration unused revision value" type="uint8" len="1"/>
+        <var addr="102" name="Pri_CSRDProjRevMajor" desc="(CSRD Proj Rev Maj) CSRD Project Configuration major revision value" type="uint8" len="1"/>
+        <var addr="103" name="Pri_CSRDProjRevMinor" desc="(CSRD Proj Rev Min) CSRD Project Configuration minor revision value" type="uint8" len="1"/>
+        <var addr="104" name="Pri_CSRDProjRevTest" desc="(CSRD Proj Rev Test) CSRD Project Configuration test revision value" type="uint8" len="1"/>
+        <var addr="105" name="Pri_CSRDProjRevUnused" desc="(CSRD Proj Rev Un) CSRD Project Configuration unused revision value" type="uint8" len="1"/>
+        <bitfield addr="106" desc="">
+            <bit number="0" name="Pri_testbitsspare" desc="(Test Spare Bit) spare" len="5"/>
+            <bit number="5" name="Pri_SourceOut1" desc="(Source Output) Source output 1.  0: Off 1: On" len="1"/>
+            <bit number="6" name="Pri_SinkOut2" desc="(Sink Output 2) Sink output 2.  0: Off 1: On" len="1"/>
+            <bit number="7" name="Pri_SinkOut1" desc="(Sink Output 1) Sink output 1.  0: Off 1: On" len="1"/>
+        </bitfield>
+        <bitfield addr="107" desc="">
+            <bit number="0" name="Pri_ATPTestCanRun" desc="(ATP can run Test) Can the ATP run a self test? 0: can not run a test, 1: can run a test" len="1"/>
+            <bit number="1" name="Pri_ATPTestRunning" desc="(ATP Test running) Is the ATP running a test? 0: no 1: yes" len="1"/>
+            <bit number="2" name="Pri_ATPTestCanceled" desc="(ATP Test canceled) Has the ATP canceled the current test? 0: no 1: yes" len="1"/>
+            <bit number="3" name="Pri_ATPTestPass" desc="(ATP Test Pass) Has the current ATP test has completed and Passed? 0: no, 1:yes" len="1"/>
+            <bit number="4" name="Pri_ATPTestFailed" desc="(ATP Test Failed) Has the current ATP test has completed and Failed? 0: no, 1:yes" len="1"/>
+        </bitfield>
+        <bitfield addr="108" desc="">
+            <bit number="0" name="Pri_ATOTestCanRun" desc="(ATO can run Test) Can the ATO run a self test? 0: can not run a test, 1: can run a test" len="1"/>
+            <bit number="1" name="Pri_ATOTestRunning" desc="(ATO Test running) Is the ATO running a test? 0: no 1: yes" len="1"/>
+            <bit number="2" name="Pri_ATOTestCanceled" desc="(ATO Test canceled) Has the ATO canceled the current test? 0: no 1: yes" len="1"/>
+            <bit number="3" name="Pri_ATOTestPass" desc="(ATO Test Pass) Has the current ATO test has completed and Passed? 0: no, 1:yes" len="1"/>
+            <bit number="4" name="Pri_ATOTestFailed" desc="(ATO Test Failed) Has the current ATO test has completed and Failed? 0: no, 1:yes" len="1"/>
+        </bitfield>
+        <bitfield addr="109" desc="">
+            <bit number="0" name="Pri_ADCLTestCanRun" desc="(ADCL can run Test) Can the ADCL test run? 0: can not run a test, 1: can run a test" len="1"/>
+            <bit number="1" name="Pri_ADCLTestRunning" desc="(ADCL Test running) Is the ADCL test running? 0: no 1: yes" len="1"/>
+            <bit number="2" name="Pri_ADCLTestCanceled" desc="(ADCL Test canceled) Has the ADCL test been canceled? 0: no 1: yes" len="1"/>
+            <bit number="3" name="Pri_ADCLTestPass" desc="(ADCL Test Pass) Has the current ADCL test has completed and Passed? 0: no, 1:yes" len="1"/>
+            <bit number="4" name="Pri_ADCLTestFailed" desc="(ADCL Test Failed) Has the current ADCL test has completed and Failed? 0: no, 1:yes" len="1"/>
+        </bitfield>
+        <var addr="110" name="Pri_ATPutilization" desc="(ATP % used) percentage of CPU cycle time used by ATP (0-100)" type="uint8" len="1"/>
+        <var addr="111" name="Pri_ATOutilization" desc="(ATO % used) percentage of CPU cycle time used by ATO (0-100)" type="uint8" len="1"/>
+        <bitfield addr="112" desc="">
+            <bit number="0" name="Pri_ATO_PSS1Missed" desc="(PSS Beacon 1 Missed) PSS Beacon 1 Missed" len="1"/>
+            <bit number="1" name="Pri_ATO_PSS2Missed" desc="(PSS Beacon 2 Missed) PSS Beacon 2 Missed" len="1"/>
+            <bit number="2" name="Pri_ATO_PSS3Missed" desc="(PSS Beacon 3 Missed) PSS Beacon 3 Missed" len="1"/>
+            <bit number="3" name="Pri_ATO_POS1Missed" desc="(POS Beacon 1 Missed) POS Beacon 1 Missed" len="1"/>
+            <bit number="4" name="Pri_ATO_POS2Missed" desc="(POS Beacon 2 Missed) POS Beacon 2 Missed" len="1"/>
+            <bit number="5" name="Pri_ATO_AnySeqErr" desc="(Any Sequence Error) Any Sequence Error" len="1"/>
+        </bitfield>
+        <bitfield addr="113" desc="">
+            <bit number="0" name="Pri_ATO_PSSDoorOpenMissingError" desc="(PSS Door Open Miss Err) PSS Door Open Missing Error" len="1"/>
+            <bit number="1" name="Pri_ATO_POSDoorOpenMissingError" desc="(POS Door Open Miss Err) POS Door Open Missing Error" len="1"/>
+            <bit number="2" name="Pri_ATO_VZeroStatSigErr" desc="(VZero Stat Sig Err) Station Signal Received at stop" len="1"/>
+            <bit number="3" name="Pri_ATO_DegradedStopError" desc="(Degraded Stop Error) Degraded Stop Error" len="1"/>
+            <bit number="4" name="Pri_ATO_PrevPSSStatSigLostErr" desc="(Prev PSS Stat Sig Lost Err) Previous PSS Station Signal Lost Error" len="1"/>
+            <bit number="5" name="Pri_ATO_PrevPOSStatSigLostErr" desc="(Prev POS Stat Sig Lost Err) Previous POS Station Signal Lost Error" len="1"/>
+        </bitfield>
+        <bitfield addr="114" desc="">
+            <bit number="0" name="Pri_ATO_PosPositionError" desc="(POS Position Err) Programmed operation stop position error" len="1"/>
+            <bit number="1" name="Pri_ATO_PosSequenceError" desc="(POS Seq Err) Operation stop sequence error" len="1"/>
+            <bit number="2" name="Pri_ATO_PosStaSigLostError" desc="(POS Stat Sig Lost Err) Programmed operation stop station signal lost error" len="1"/>
+            <bit number="3" name="Pri_ATO_PosBeaconToleranceError" desc="(POS Beacon Tol Err) POS Beacon distance tolerance error" len="1"/>
+            <bit number="4" name="Pri_ATO_PosMissedBeaconError" desc="(POS Missed Beacon Err) Programmed Operation Stop beacon missed" len="1"/>
+            <bit number="5" name="Pri_ATO_UnexpectedPssBeaconError" desc="(Unex PSS Beacon Err) Unexpected PSS beacon detected" len="1"/>
+            <bit number="6" name="Pri_ATO_UnexpectedPosBeaconError" desc="(Unex POS Beacon Err) Unexpected POS beacon detected" len="1"/>
+            <bit number="7" name="Pri_ATO_UnexpectedStaSigError" desc="(Unex Stat Sig Err) Unexpected Station Signal Received" len="1"/>
+        </bitfield>
+        <bitfield addr="115" desc="">
+            <bit number="0" name="Pri_ATO_PssPositionError" desc="(PSS Position Err) Programmed station stop position error" len="1"/>
+            <bit number="1" name="Pri_ATO_PssSequenceError" desc="(PSS Seq Err) Station stop sequence error" len="1"/>
+            <bit number="2" name="Pri_ATO_PssDoorOpenSeqError" desc="(PSS Door Open Seq Err) Programmed Station Stop door open sequence error" len="1"/>
+            <bit number="3" name="Pri_ATO_PssStaSigLostError" desc="(PSS Stat Sig Lost Err) Station Signal Lost Error" len="1"/>
+            <bit number="4" name="Pri_ATO_PssBeaconToleranceError" desc="(PSS Beacon Tol Err) PSS Beacon distance tolerance error" len="1"/>
+            <bit number="5" name="Pri_ATO_PssMissedBeaconError" desc="(PSS Missed Beacon Err) Programmed Station Stop beacon missed" len="1"/>
+            <bit number="6" name="Pri_ATO_PssStaSigMissingError" desc="(PSS Stat Sig Missing Err) Programmed Station Stop Station Signal Missing Error" len="1"/>
+            <bit number="7" name="Pri_ATO_PosInitiationError" desc="(POS Init Err) Operation Stop Initiation error" len="1"/>
+        </bitfield>
+        <bitfield addr="116" desc="">
+            <bit number="0" name="Pri_ATO_PssCompleted" desc="(PSS Completed) Programmed station stop completed" len="1"/>
+            <bit number="1" name="Pri_ATO_PosInStationCompleted" desc="(PSS In Stat Comp) Station stop in station completed" len="1"/>
+            <bit number="2" name="Pri_ATO_PosOutStationCompleted" desc="(PSS Out Stat Comp) Programmed Station Stop out of station completed" len="1"/>
+            <bit number="3" name="Pri_ATO_PcoF35AtOccupancy" desc="(PCO F35 At Occ) Program Coast Operation F35 at occupancy" len="1"/>
+            <bit number="4" name="Pri_ATO_PcoAllowed" desc="(PCO Allowed) Program Coast Operation Allowed" len="1"/>
+            <bit number="5" name="Pri_ATO_PcoEnforced" desc="(PCO Enforced) Program Coast Operation Enforced" len="1"/>
+            <bit number="6" name="Pri_ATO_PcoIgnored" desc="(PCO Ignored) Program Coast Operation Ignored" len="1"/>
+            <bit number="7" name="Pri_ATO_ProgStopSeqErr" desc="(Prog Stop Seq Error) Program Stop Sequence Error" len="1"/>
+        </bitfield>
+        <bitfield addr="117" desc="">
+            <bit number="0" name="Pri_ATO_PssActive" desc="(PSS Active) Programmed station stop active" len="1"/>
+            <bit number="1" name="Pri_ATO_PosActive" desc="(POS Active) Programmed operation stop active" len="1"/>
+            <bit number="2" name="Pri_ATO_PssActiveInStation" desc="(PSS Active In Stat) Programmed station stop active in station" len="1"/>
+            <bit number="3" name="Pri_ATO_PosActiveInStation" desc="(POS Active In Stat) Programmed operation stop active in station" len="1"/>
+            <bit number="4" name="Pri_ATO_ErrPADepartAborted" desc="(PA Dep Abort Err) PA Departure Aborted Error" len="1"/>
+            <bit number="5" name="Pri_ATO_ErrLostDTAButton" desc="(Lost DTA Button Err) Lost DTA Button Error" len="1"/>
+            <bit number="6" name="Pri_ATO_F15StatSigLostErr" desc="(F15 Stat Sig Lost Err) F15 Station Signal Lost Error" len="1"/>
+            <bit number="7" name="Pri_ATO_PrevF15StatSigLostErr" desc="(Prev F15 Stat Sig Lost Err) Previous F15 Station Signal Lost Error" len="1"/>
+        </bitfield>
+        <var addr="118" name="Pri_ATO_DistancePastStation" desc="(Dist Past Stat) The distance past the station stop in 0.001 meters" type="uint16" len="1"/>
+        <bitfield addr="120" desc="">
+            <bit number="0" name="Pri_ATO_PssBeaconRawDetecting" desc="(PSS Beacon Raw Detecting) Programmed station stop beacon raw detecting" len="1"/>
+            <bit number="1" name="Pri_ATO_PosBeaconRawDetecting" desc="(POS Beacon Raw Detecting) Programmed operation stop beacon raw detecting" len="1"/>
+            <bit number="2" name="Pri_ATO_PcoBeaconRawDetecting" desc="(PCO Beacon Raw Detecting) Programmed beacon raw detecting" len="1"/>
+            <bit number="3" name="Pri_ATO_ProgStopActive" desc="(PS Active) Programmed stop active" len="1"/>
+            <bit number="4" name="Pri_ATO_ProgStopAtStatActive" desc="(PS At Stat Active) Programmed stop at station active" len="1"/>
+            <bit number="5" name="Pri_ATO_ProgStopComplete" desc="(PS Complete) Programmed stop complete" len="1"/>
+            <bit number="6" name="Pri_ATO_ProgStopAtStatComplete" desc="(PS At Stat Complete) Programmed stop at station complete" len="1"/>
+        </bitfield>
+        <var addr="121" name="Pri_SpareByte09" desc="(SB 9) Unused" type="uint8" len="2"/>
+        <bitfield addr="123" desc="">
+            <bit number="0" name="Sec_ActiveCab" desc="(Active Cab) Primary ATP Active" len="1"/>
+            <bit number="1" name="Sec_ATPType" desc="(Unit Type) Indicates which redundant ATC this is.  1:Primary 2:Secondary" len="2"/>
+            <bit number="3" name="Sec_Controlling" desc="(This ATC in Control) Indicates that this ATC is available to control the train.  0: Inactive 1: Active" len="1"/>
+            <bit number="4" name="Sec_RedunSysAvail" desc="(This ATC Operational)Indicates the availability of the other ATC system.  0: Unavailable 1: Available" len="1"/>
+            <bit number="5" name="Sec_AbsoluteVzero" desc="(Absolute Vzero) Indicates that the train is at the no motion state.  0: Inactive 1: Active" len="1"/>
+            <bit number="6" name="Sec_TrainVzero" desc="(Train Vzero) Indicates that the speed is &lt; 1.5 mph.  0: Inactive 1: Active" len="1"/>
+            <bit number="7" name="Sec_EB_BrakeActive" desc="(EB Request) Indicates that the ATP has asserted the Emergency Brake. 0: EB applied 1: EB not applied" len="1"/>
+        </bitfield>
+        <bitfield addr="124" desc="">
+            <bit number="0" name="Sec_FullServiceBrakeRequest" desc="(Full Service Brake) Indicates that the ATC is applying the FSB.  0: Inactive 1: Active" len="1"/>
+            <bit number="1" name="Sec_OverSpeedStatus" desc="(Over Speed Status) Indicates that the train is over speed.  0: under 1: over" len="1"/>
+            <bit number="2" name="Sec_SignalingPresent" desc="(Signaling Present) Indicates ATP is receiving wayside speed codes  0: No Signaling 1: Signaling present" len="2"/>
+            <bit number="4" name="Sec_ATP_CutTraction" desc="(ATP Tract Cut) Indicates that the traction cut signal is active.  0: Inactive 1: Active" len="1"/>
+            <bit number="5" name="Sec_DoorCloseReq" desc="(Door Close Req) Indicates that the door close request is active.  0: Inactive 1: Active" len="1"/>
+        </bitfield>
+        <bitfield addr="125" desc="">
+            <bit number="0" name="Sec_PAOvrRide" desc="(Override PA mode) Indicates that PA mode has been manually over ridden. 0: inactive 1:active" len="1"/>
+            <bit number="1" name="Sec_PAOvrRideRejected" desc="(Override of PA Rej) Indicates an attempt was made to manually override PA mode, but it was rejected.  0: inactive 1:active" len="1"/>
+            <bit number="2" name="Sec_TXBuzzerOn" desc="(TX Buzzer on) Sound the Buzzer in the Other ATC  0: inactive 1:active" len="1"/>
+        </bitfield>
+        <var addr="126" name="Sec_DepSpdCodeHldUpTmr" desc="(Dep Speed Code Holdup Timer) Departure speed code hold up timer. Decreases from 20 to 0." type="uint8" len="1"/>
+        <bitfield addr="127" desc="">
+            <bit number="0" name="Sec_MstCtrlDirection" desc="(MC Direction) Direction from the master controller. 0: Invalid, 1: Neutral, 2: Forward, 3: Reverse" len="2"/>
+            <bit number="2" name="Sec_MstCtrlDeadmanSts" desc="(Deadman Switch) State of the master-controller dead man switch. 0: Inactive 1: Active" len="1"/>
+            <bit number="3" name="Sec_MstCtrlQuadrant" desc="(Mst Ctrl Position) Overall Position of the master-controller. 0: Off 1: Brake 2: Coast 3: Traction" len="2"/>
+        </bitfield>
+        <var addr="128" name="Sec_CntlMode" desc="(ATP OP Mode) ATP operating mode. 0: Off 1: CMC 2: ATO 3: CM 4: CD 5: TA 7: PA Override" type="uint8" len="1"/>
+        <var addr="129" name="Sec_DADepartureTime" desc="(DA Depart Time) DA Departure button press time, in seconds. Range: 2-10" type="uint8" len="1"/>
+        <var addr="130" name="Sec_sparebyte02" desc="(IC Test Speed) Inverter Cut Test speed, in mph. Range: 23, 28, 33" type="uint8" len="1"/>
+        <var addr="131" name="Sec_EnforcedSpeedLimit" desc="(Enf Speed Limit) Speed limit currently enforced  range: 0, 10, 15, 20, 25, 35, 45" type="uint8" len="1"/>
+        <var addr="132" name="Sec_TrainSpeed" desc="(Train Speed) The current train speed in 0.1 MPH" type="uint16" len="1"/>
+        <var addr="134" name="Sec_TrainSpeed6840" desc="(Tach3 Ch2D Speed) The speed from Tach 3 Channel 2D in 0.1 MPH" type="uint16" len="1"/>
+        <var addr="136" name="Sec_TrainSpeed6522" desc="(Tach2 Ch1C Speed) The speed from Tach 2 Channel 1C in 0.1 MPH" type="uint16" len="1"/>
+        <bitfield addr="138" desc="">
+            <bit number="0" name="Sec_TachDirection" desc="(Tach Direction) Direction from the tachs via the MFB 0: Unknown 1: Forward 2: Reverse 3: Bad" len="2"/>
+        </bitfield>
+        <var addr="139" name="Sec_ESLCode" desc="(Enforced Speed Limit Code) Speed limit currently enforced Enumeration 0: Invalid 1: No code 2: F0 3:Invalid 4: F10 5: F15s 6: F15 7: F20 8: F25 9: F35 10: F45" type="uint8" len="1"/>
+        <var addr="140" name="Sec_InitMotionChkTime" desc="(Init Motion time) Time the initial motion check has been running. 0-8 seconds" type="uint8" len="1"/>
+        <var addr="141" name="Sec_DecelValueFwd" desc="(Decel Fwd Value) Raw decelerometer reading in the Forward Direction" type="uint8" len="1"/>
+        <var addr="142" name="Sec_DecelValueRev" desc="(Decel Rev Value) Raw decelerometer reading in the Reverse Direction" type="uint8" len="1"/>
+        <var addr="143" name="Sec_AccelDecelRate" desc="(Decel Rate) The current deceleration rate in 0.01 Meter/sec^2" type="int16" len="1"/>
+        <var addr="145" name="Sec_BrakeRateBank" desc="(Brake Rate Bank) The current braking rate banked value in m/s^2" type="int16" len="1"/>
+        <bitfield addr="147" desc="">
+            <bit number="0" name="Sec_BrakeAssuranceMet" desc="(Brake Assurance) Brake Assurance status. 0: met 1: Not Met" len="1"/>
+            <bit number="1" name="Sec_DecelCalibrated" desc="(Decel Calibrated) Decelerometer Calibration Status 1: Calibrated 0: Not Calibrated" len="1"/>
+            <bit number="2" name="Sec_EBFeedback" desc="(EB feedback) Status that the EB has been applied 0: EB Off 1:EB On" len="1"/>
+            <bit number="3" name="Sec_TractEnable" desc="(Tract Enable) Traction enable status. 0: cut, 1:Enabled" len="1"/>
+        </bitfield>
+        <var addr="148" name="Sec_Tachdvdt" desc="(tach dv/dt) acceleration computed from speed range -2 to 2" type="int16" len="1"/>
+        <var addr="150" name="Sec_SpareByte04" desc="(SB 4) Unused" type="uint8" len="1"/>
+        <var addr="151" name="Sec_SpeedLimitCode" desc="(Speed Limit Code) The current speed code from the Wayside.0: NO_CODE 1: F0s 2: F0 3: Fvd 4: F10 5: F15s 6: F15 7: F20 8: F25 9: F35 10: F45" type="uint8" len="1"/>
+        <var addr="152" name="Sec_SpeedCodePeriod" desc="(Speed Code Per) The period of the last received speed code in 0.0001 seconds" type="uint16" len="1"/>
+        <bitfield addr="154" desc="">
+            <bit number="0" name="Sec_SpeedCodeDetected" desc="(Speed Code Det) Indicates the presence of a speed code. 0: Code Missing 1: Code Present" len="1"/>
+            <bit number="1" name="Sec_StationSigDet" desc="(Station Signal Det) Indicates the presence of a station carrier signal. 0: Absent 1: Present" len="1"/>
+            <bit number="2" name="Sec_Mod4khz" desc="(Mod 4 Khz) Indicates the presence of modulated station carrier signal. 0: No Signal 1: Steady 4Khz 2: 45Hz Modulation 3: 35Hz Modulation" len="2"/>
+            <bit number="4" name="Sec_CoastBeaconDetected" desc="(Coast Beacon) Indicates the detection of a coasting beacon. 0: Absent 1: Present" len="1"/>
+            <bit number="5" name="Sec_TrkCirBoundDetect" desc="(Track Circuit Bound) Indicates the presence of a track circuit boundary. 0: Absent 1: Present" len="1"/>
+        </bitfield>
+        <bitfield addr="155" desc="">
+            <bit number="0" name="Sec_SStopBeacon1Det" desc="(Stop Beacon 1) Station stop beacon 1 detected. 0: Absent 1: Present" len="1"/>
+            <bit number="1" name="Sec_SStopBeacon2Det" desc="(Stop Beacon 2) Station stop beacon 2 detected. 0: Absent 1: Present" len="1"/>
+            <bit number="2" name="Sec_SStopBeacon3Det" desc="(Stop Beacon 3) Station stop beacon 3 detected. 0: Absent 1: Present" len="1"/>
+            <bit number="3" name="Sec_OpStopBea1Det" desc="(OP Beacon 1) Operational stop beacon 1 detected. 0: Absent 1: Present" len="1"/>
+            <bit number="4" name="Sec_OpStopBea2Det" desc="(OP Beacon 2) Operational stop beacon 2 detected. 0: Absent 1: Present" len="1"/>
+        </bitfield>
+        <bitfield addr="156" desc="">
+            <bit number="0" name="Sec_CSRD1_HealthStatus" desc="(CSRD 1 Health) CSRD CPU 1 Health Status. 0: OK 1: Informational Event 2: Warning Event 3: Failure Event" len="2"/>
+            <bit number="2" name="Sec_CSRD2_HealthStatus" desc="(CSRD 2 Health) CSRD CPU 2 Health Status. 0: OK 1: Informational Event 2: Warning Event 3: Failure Event" len="2"/>
+        </bitfield>
+        <var addr="157" name="Sec_PwireEffort" desc="(PWire Current) The P-wire current (Effort Request) in 0.1 mA" type="uint16" len="1"/>
+        <var addr="159" name="Sec_ATODistanceToStop" desc="(ATO Dist Stop) The distance to the station stop in 0.001 meters" type="int16" len="1"/>
+        <bitfield addr="161" desc="">
+            <bit number="0" name="Sec_StationStopActive" desc="(Station Stop Act) Indication that the ATO is performing a station stop 0: not SS 1: SS" len="1"/>
+            <bit number="1" name="Sec_ATO_SkipStationStopAllowed" desc="(ATO Skip Stat Stop All) ATP Skip Station Stop Allowed 0: Not Allowed, 1: Allowed" len="1"/>
+            <bit number="2" name="Sec_ATOOperation" desc="(ATO Operational) ATO operational status 0: not operating 1: operating" len="1"/>
+            <bit number="3" name="Sec_ATOCoastInd" desc="(ATO Coast) ATO in coast    0: no 1: yes" len="1"/>
+            <bit number="4" name="Sec_ATOTractInd" desc="(ATO Traction) ATO in traction    0: no 1: yes" len="1"/>
+            <bit number="5" name="Sec_DAButtonSts" desc="(DA Button) Automatic departure button status. 0: OFF 1: ON" len="1"/>
+            <bit number="6" name="Sec_ProgStopInd" desc="(Prg Stop Ind)  Program stop indication.  0= no program stop underway, 1 either POS or PSS underway" len="1"/>
+        </bitfield>
+        <bitfield addr="162" desc="">
+            <bit number="0" name="Sec_ATOBrakeInd" desc="(ATO Brake) ATO is requesting brakes. 0: no Brakes, 1: Brake Request" len="1"/>
+            <bit number="1" name="Sec_CancelStationStopInd" desc="(ATO Skip Stat Stop Act)  ATO Skip Station Stop Active 0: Not Active, 1: Active" len="1"/>
+            <bit number="2" name="Sec_DepartureInd" desc="(ATO Departure Ind) The ATO will depart the station 0: Not Departing, 1: Departing" len="1"/>
+            <bit number="3" name="Sec_ATO_SkipStationStopIgnored" desc="(Skip Station Stop Ignored) ATP Skip Station Stop Ignored 0: Not Ignored, 1: Ignored" len="1"/>
+        </bitfield>
+        <var addr="163" name="Sec_SpareByte05" desc="(SB 5) Unused" type="uint8" len="1"/>
+        <var addr="164" name="Sec_DepartDistanceFromStation" desc="(ATP Depart Distance) The distance from the Last station in cm" type="uint16" len="1"/>
+        <bitfield addr="166" desc="">
+            <bit number="0" name="Sec_CanStopInStation" desc="(Can Stop In Stat) Indication that the train can stop inside the station. 0: Not stop inside station 1: Stop Inside Station" len="1"/>
+        </bitfield>
+        <var addr="167" name="Sec_ATOspeed" desc="(ATO speed) ATP speed in m/s. (0- 30)" type="uint16" len="1"/>
+        <bitfield addr="169" desc="">
+            <bit number="0" name="Sec_CSRD_SelfTestResult" desc="(CSRD Test) Indicates the results of CSRD&#39;s self test. 0: No Result 1: Test Passed 2: Test Failed" len="2"/>
+            <bit number="2" name="Sec_spareTestResult" desc="(ST spare) unused" len="2"/>
+            <bit number="4" name="Sec_ATO_SelfTestResult" desc="(ATO Test) Indicates the results of ATO&#39;s self test. 0: No Result 1: Test Passed 2: Test Failed" len="2"/>
+            <bit number="6" name="Sec_QVM_SelfTestResult" desc="(QVM Test) Indicates the results of QVM&#39;s self test. 0: No Result 1: Test Passed 2: Test Failed" len="2"/>
+        </bitfield>
+        <bitfield addr="170" desc="">
+            <bit number="0" name="Sec_ATPSelfTestStatus" desc="(ATP Test Status) the status of a self test  | N/A, running, Complete" len="2"/>
+        </bitfield>
+        <var addr="171" name="Sec_InvCutTestState" desc="(Inv Cut Test State)  state of the inverter cut test. 0: initial, 1: test running, 2: pass, 3: fail" type="uint8" len="1"/>
+        <var addr="172" name="Sec_TractCutTestState" desc="(Tract Cut Test State) state of the traction cut test.  0: initial, 1: test running, 2: pass, 3: test aborted, 4: test failed" type="uint8" len="1"/>
+        <var addr="173" name="Sec_InvCutTestRes" desc="(Inv Cut Test Res) Inverter cut test results. 0: initial, 2: pass, 3: fail" type="uint8" len="1"/>
+        <var addr="174" name="Sec_TractCutTestRes" desc="(Tract Cut Test Res) Traction cut test results. 0: initial, 2: pass, 3: test aborted, 4: test failed" type="uint8" len="1"/>
+        <var addr="175" name="Sec_TrCutTestAbortCount" desc="(Tract Cut Tst Aborts) Count of aborted traction cut test. 0-255." type="uint8" len="1"/>
+        <bitfield addr="176" desc="">
+            <bit number="0" name="Sec_ATP_CPU_Error" desc="(ATP CPU Err) An ATP CPU error has been detected." len="1"/>
+            <bit number="1" name="Sec_DecelerometerError" desc="(Decel Err) A Decelerometer error has been detected. 0: No Error 1: Error" len="1"/>
+            <bit number="2" name="Sec_VitalInput_2_PCB_Error" desc="(Vin 2 PCB Err) A Vital input board #2 error has been detected. 0: No Error 1: Error" len="1"/>
+            <bit number="3" name="Sec_VitalInput_1_PCB_Error" desc="(Vin 1 PCB Err) A Vital input board #1 error has been detected. 0: No Error 1: Error" len="1"/>
+            <bit number="4" name="Sec_NonVitalPCB_Error" desc="(NV PCB Err) A NonVital output board error has been detected. 0: No Error 1: Error" len="1"/>
+            <bit number="5" name="Sec_MultifunctionPCB_Error" desc="(MF PCB Err) A Multifunction PCB error has been detected. 0: No Error 1: Error" len="1"/>
+            <bit number="6" name="Sec_QVMControl1XChk" desc="(QVM Ctrl 1 XChk) A QVM control 1 crosscheck error has been detected. 0: No Error 1: Error" len="1"/>
+        </bitfield>
+        <bitfield addr="177" desc="">
+            <bit number="0" name="Sec_QVMControl2XChk" desc="(QVM Ctrl 2 XChk) A QVM control 2 crosscheck error has been detected. 0: No Error 1: Error" len="1"/>
+            <bit number="1" name="Sec_CSRD_ModuleFailure" desc="(CSRD Module Fail) A CSRD module failure error has been detected. 0: No Error 1: Error" len="1"/>
+            <bit number="2" name="Sec_BrakeRateNotAchieved" desc="(Brake Rate Not Ach) The required brake has not been met error.  0: No error 1: Error" len="1"/>
+            <bit number="3" name="Sec_LossofSignaling" desc="(Lost Signal) Loss of signaling Error.   0: No Error 1: Error" len="1"/>
+            <bit number="4" name="Sec_CSRD_testError" desc="(CSRD test error) The CSRD has failed its test 0: OK, 1: error" len="1"/>
+            <bit number="5" name="Sec_ModeNotAccepted" desc="(Mode Entry Error) The ATP did not enter the requested mode.  0: No Error 1: Error" len="1"/>
+        </bitfield>
+        <bitfield addr="178" desc="">
+            <bit number="0" name="Sec_InvalidUnitTypeError" desc="(Invalid Unit Err) The ATP unit type is invalid. 0: No Error 1: Error" len="1"/>
+            <bit number="1" name="Sec_UnstableUnitTypeError" desc="(Unstable Unit Err) The ATP unit type is unstable. 0: No Error 1: Error" len="1"/>
+            <bit number="2" name="Sec_ModeChangeMotion" desc="(Mode Change Err) The ATP mode has changed while the train is moving. 0: No Error 1: Error" len="1"/>
+            <bit number="3" name="Sec_DirChangeInMotionError" desc="(Direction Change Err) The direction indication from the master controller has changed while the train is moving. 0: No Error 1: Error" len="1"/>
+            <bit number="4" name="Sec_Fwd_RevXChkError" desc="(Fwd Rev XChk Err) The forward reverse crosscheck has failed. 0: No Error 1: Error" len="1"/>
+            <bit number="5" name="Sec_OperatingModeXChkError" desc="(OP Mode XChk Err) The operating mode crosscheck has failed. 0: No Error 1: Error" len="1"/>
+            <bit number="6" name="Sec_DirMatchError" desc="(Dir Mismatch Err) There was a direction mismatch error. 0: No Error 1: Error" len="1"/>
+            <bit number="7" name="Sec_DecelUnstableError" desc="(Decel Unstable) An unstable decelerometer event has been detected.  0: No Error 1: Error" len="1"/>
+        </bitfield>
+        <bitfield addr="179" desc="">
+            <bit number="0" name="Sec_ATP_PA_CommFailure" desc="(ATP PA Comm Fail) The data link between the ATP and ATO is down. 0: No Error 1: Error" len="1"/>
+            <bit number="1" name="Sec_ATP_CSRD_CommFailure" desc="(ATP CSRD Comm Fail) The data link between the ATP and CSRD is down. 0: No Error 1: Error" len="1"/>
+            <bit number="2" name="Sec_comsp01" desc="(com sp 1) unused" len="1"/>
+            <bit number="3" name="Sec_MCStatusError" desc="(MC status Error) A master controller status error detected. 0: No Error 1: Error" len="1"/>
+            <bit number="4" name="Sec_UnexpBuzzerReq" desc="(Unex Buzzer Req) An unexpected buzzer request was received. 0: No Error 1: Error" len="1"/>
+        </bitfield>
+        <bitfield addr="180" desc="">
+            <bit number="0" name="Sec_RollAwayDetect" desc="(Rollaway) A roll away condition has been detected. 0: No Error 1: Error" len="1"/>
+            <bit number="1" name="Sec_OverspeedEventStatus" desc="(Overspeed Err) An over speed error has been detected. 0: No Error 1: Error" len="1"/>
+            <bit number="2" name="Sec_LossOfSpeedSensor" desc="(Speed Sensor Loss) A speed sensor loss error has been detected. 0: No Error 1: Error" len="1"/>
+            <bit number="3" name="Sec_SpeedSensorMismatch" desc="(Spd Sens Mismatch) A speed sensor mismatch error has been detected. 0: No Error 1: Error" len="1"/>
+            <bit number="4" name="Sec_InitialMotionChkError" desc="(Init Motion Err) An initial motion check error has been detected. 0: No Error 1: Error" len="1"/>
+            <bit number="5" name="Sec_F10F15sDropEB" desc="(F10 F15s Drop) An F10 or F15s check has caused an emergency brake application. 0: No Error 1: Error" len="1"/>
+        </bitfield>
+        <bitfield addr="181" desc="">
+            <bit number="0" name="Sec_Traction_En_XChkError" desc="(Tract Enable XChk) A traction enable cross check error has been detected.  0: No Error 1: Error" len="1"/>
+            <bit number="1" name="Sec_UnexpectedTractReqError" desc="(Unexp Trac Req Err) An unexpected traction request has been detected. 0: No Error 1: Error" len="1"/>
+            <bit number="2" name="Sec_EBXChk" desc="(EB XChk Err) The emergency brake cross check has failed. 0: No Error 1: Error" len="1"/>
+            <bit number="3" name="Sec_BrakeAssurXChkError" desc="(Brake Assur XChk Err) The brake assurance cross check has failed. 0: No Error 1: Error" len="1"/>
+            <bit number="4" name="Sec_V0_DecelXChkError" desc="(NoMo Decel XChk) The Vzero absolute decelerometer crosscheck has failed.  0: No Error 1: Error" len="1"/>
+        </bitfield>
+        <bitfield addr="182" desc="">
+            <bit number="0" name="Sec_CancSStopBtnStk" desc="(Cancel SStop Btn Stk) A stuck cancel station stop mutton error has been detected. 0: No Error 1: Error" len="1"/>
+            <bit number="1" name="Sec_DTAButtonStuck" desc="(DTA Button Stuck) A stuck DTA button error has been detected. 0: No Error 1: Error" len="1"/>
+            <bit number="2" name="Sec_DAButtonStuck" desc="(DA Button Stuck) A stuck DA button error has been detected. 0: No Error 1: Error" len="1"/>
+            <bit number="3" name="Sec_OpStopInitErr" desc="(OP Stop Init Err) An operation stop initialization error has been detected. 0: No Error 1: Error" len="1"/>
+            <bit number="4" name="Sec_CoastComndRefused" desc="(Coast Cmd Refused) A coast command has been refused. 0: No Error 1: Error" len="1"/>
+            <bit number="5" name="Sec_StStopSeqError" desc="(SStop Seq Err) A station stop sequence error has been. detected. 0: No Error 1: Error" len="1"/>
+        </bitfield>
+        <bitfield addr="183" desc="">
+            <bit number="0" name="Sec_MissingBeacon" desc="(Missing Beacon) Missing beacon error.  0: No Error 1: Error" len="1"/>
+            <bit number="1" name="Sec_InvalidBeacon" desc="(Invalid Beacon) Invalid Beacon Error.  0: No Error 1: Error" len="1"/>
+            <bit number="2" name="Sec_QVMtestError" desc="(QVM test error) the QVM test has failed 0: No Error 1: Error" len="1"/>
+            <bit number="3" name="Sec_SpeedCapError" desc="(Speed Cap Error) the speed cap has been exceeded. 0: No Error 1: Error" len="1"/>
+        </bitfield>
+        <bitfield addr="184" desc="">
+            <bit number="0" name="Sec_InvCutXChkError" desc="(Inv Cut XChk) An Inverter cut cross check error has been detected.  0: No Error 1: Error" len="1"/>
+        </bitfield>
+        <var addr="185" name="Sec_ATOSysEvent" desc="(ATO Sys Event) Spare ATO event" type="uint8" len="3"/>
+        <bitfield addr="188" desc="">
+            <bit number="0" name="Sec_ManualDoorCloseStuckError" desc="(Door Close Btn Stk) A stuck door close button error has been detected. 0: No Error 1: Error" len="1"/>
+            <bit number="1" name="Sec_DoorOpenSequenceError" desc="(Door Open Seq Err) A door open sequence error has been detected. 0: No Error 1: Error" len="1"/>
+            <bit number="2" name="Sec_DoorModeXCheckError" desc="(Door Mode Xchk)  a door mode cross check error has been detected. 0: No Error 1: Error" len="1"/>
+            <bit number="3" name="Sec_DoorEnLeftXCheckError" desc="(Door En Left Xchk) a left door enable cross check has been detected.  0: No Error 1: Error" len="1"/>
+            <bit number="4" name="Sec_DoorEnRightXCheckError" desc="(Door En Right Xchk) a right door enable cross check has been detected.  0: No Error 1: Error" len="1"/>
+            <bit number="5" name="Sec_DoorBypassXCheckError" desc="(Door En Bypass Xchk) a door enable bypass cross check has been detected.  0: No Error 1: Error" len="1"/>
+        </bitfield>
+        <var addr="189" name="Sec_TractCutSpeed" desc="(Tr Cut Test Speed) Speed threshold to run the traction cut test. 23, 28, or 33 mph * 10" type="uint16" len="1"/>
+        <bitfield addr="191" desc="">
+            <bit number="0" name="Sec_RawAcab" desc="(Raw Act Cab) Raw input for Active Cab. 0: Off 1: On" len="1"/>
+            <bit number="1" name="Sec_RawATOMode" desc="(Raw ATO Mode) Raw input indicating ATO mode. 0: Off 1: On" len="1"/>
+            <bit number="2" name="Sec_RawCMCMode" desc="(Raw CMC Mode) Raw input indicating CMC mode. 0: Off 1: On" len="1"/>
+            <bit number="3" name="Sec_RawCMCwoCCV" desc="(Raw CMC no CCV) Raw input indicating mode without CCV. 0: Off 1: On" len="1"/>
+            <bit number="4" name="Sec_RawCDMode" desc="(Raw CD Mode) Raw input indicating CD mode. 0: Off 1: On" len="1"/>
+            <bit number="5" name="Sec_RawTAMode" desc="(Raw TA Mode) Raw input indicating TA mode. 0: Off 1: On" len="1"/>
+            <bit number="6" name="Sec_RawMCFwd" desc="(Raw MC Fwd) Raw input indicating Forward from the master controller. 0: Off 1: On" len="1"/>
+            <bit number="7" name="Sec_RawMCRev" desc="(Raw MC Rev) Raw input indicating Reverse from the master controller. 0: Off 1: On" len="1"/>
+        </bitfield>
+        <bitfield addr="192" desc="">
+            <bit number="0" name="Sec_RawDAin" desc="(Raw DA In) Raw input DA. 0: Off 1: On" len="1"/>
+            <bit number="1" name="Sec_RawCancelSS" desc="(Raw Cancel SS) Raw input Cancel Station Stop. 0: Off 1: On" len="1"/>
+            <bit number="2" name="Sec_RawDTA" desc="(Raw DTA In) Raw input DTA. 0: Off 1: On" len="1"/>
+            <bit number="3" name="Sec_RawMC_trac" desc="(Raw MC Trac) Raw input MC Traction Quadrant. 0: Off 1: On" len="1"/>
+            <bit number="4" name="Sec_RawMC_ntrac" desc="(Raw MC Not Trac)Raw input MC Not Traction Quadrant. 0: Off 1: On" len="1"/>
+            <bit number="5" name="Sec_RawMC_brake" desc="(Raw MC Brake) Raw input MC Brake Quadrant. 0: Off 1: On" len="1"/>
+            <bit number="6" name="Sec_RawInvCutFB" desc="(Raw Inv Cut FB) Raw input inverter cut feedback (from traction).  0: Off 1: On" len="1"/>
+            <bit number="7" name="Sec_vin1_bits15" desc="(Vin 1 Bit 15) Vital input board 1 Bit 15. 0: Off 1: On" len="1"/>
+        </bitfield>
+        <bitfield addr="193" desc="">
+            <bit number="0" name="Sec_RawMC_Deadman" desc="(Raw MC Deadman) Raw input MC deadman. 0: Off 1: On" len="1"/>
+            <bit number="1" name="Sec_RawADCL" desc="(Raw All Doors Close Lock) Raw input all doors closed and locked. 0: Off 1: On" len="1"/>
+            <bit number="2" name="Sec_RawDoorAAuto" desc="(Raw Door Auth Auto) Raw input door authorization for Auto. 0: Off 1: On" len="1"/>
+            <bit number="3" name="Sec_RawDoorClose" desc="(Raw Door Close Req) Raw input door close request. 0: Off 1: On" len="1"/>
+            <bit number="4" name="Sec_RawEBfbk" desc="(Raw EB Fdbk) Raw input EB feedback. 0: Off 1: On" len="1"/>
+            <bit number="5" name="Sec_RawNoTracCut" desc="(Raw No Trac Cut) Raw input no traction cut. 0: Off 1: On" len="1"/>
+            <bit number="6" name="Sec_RawBA" desc="(Raw BA Trainline) Raw input BA train line. 0: Off 1: On" len="1"/>
+            <bit number="7" name="Sec_RawQVM1Chk" desc="(Raw QVM 1 Check) Raw input QVM 1 check. 0: Off 1: On" len="1"/>
+        </bitfield>
+        <bitfield addr="194" desc="">
+            <bit number="0" name="Sec_RawQVM2Chk" desc="(Raw QVM 2 Check) Raw input QVM 2 check. 0: Off 1: On" len="1"/>
+            <bit number="1" name="Sec_RawATCAlive" desc="(Raw Other ATC Alive) Raw input ATC Alive.  0: Off 1: On" len="1"/>
+            <bit number="2" name="Sec_RawATConline" desc="(Raw Other ATC Online) Raw input ATC on line.  0: Off 1: On" len="1"/>
+            <bit number="3" name="Sec_RawDoorAMan" desc="(Raw Manual Door Mode) Raw input doors authorized for manual open.  0: Off 1: On" len="1"/>
+            <bit number="4" name="Sec_RawSpIN2" desc="(Raw Spare 2 In) Raw input Spare in 2. 0: Off 1: On" len="1"/>
+            <bit number="5" name="Sec_RawSpIN3" desc="(Raw Spare 3 In) Raw input Spare in 3. 0: Off 1: On" len="1"/>
+            <bit number="6" name="Sec_RawPri" desc="(Raw Pri Ind) Vital input board 2 Bit 14.  0: Off 1: On" len="1"/>
+            <bit number="7" name="Sec_RawSec" desc="(Raw Sec Ind) Vital input board 2 Bit 15.  0: Off 1: On" len="1"/>
+        </bitfield>
+        <bitfield addr="195" desc="">
+            <bit number="0" name="Sec_RawTREnBkCk" desc="(Raw Tract En) Raw input traction enable back check.  0: Off 1: On" len="1"/>
+            <bit number="1" name="Sec_RawRDoorEnBCk" desc="(Raw RDoor En) Raw input right Door Enable back check.  0: Off 1: On" len="1"/>
+            <bit number="2" name="Sec_RawLDoorEnBCk" desc="(Raw LDoor En) Raw input left Door Enable back check.  0: Off 1: On" len="1"/>
+            <bit number="3" name="Sec_mfin_bits3" desc="(MFin Bit 3) Multifunction board input Bit 3.  0: Off 1: On" len="1"/>
+            <bit number="4" name="Sec_RawBABckCk" desc="(Raw BA Bck Ch) Raw input BA back check.  0: Off 1: On" len="1"/>
+            <bit number="5" name="Sec_RawInvCutBCk" desc="(Raw Inv Cut Bck Chk) Inverter cut back check.  0: Off 1: On" len="1"/>
+            <bit number="6" name="Sec_RawNoDrEnBCk" desc="(Raw NoDoor En) Raw No door enable bypass back check  0: Off 1: On" len="1"/>
+            <bit number="7" name="Sec_mfin_bits7" desc="(MFin Bit 7) Multifunction board input Bit 7.  0: Off 1: On" len="1"/>
+        </bitfield>
+        <bitfield addr="196" desc="">
+            <bit number="0" name="Sec_RawQVMCtrl1" desc="(Raw QVM 1 Control) QVM Control 1 output.  0: Off 1: On" len="1"/>
+            <bit number="1" name="Sec_RawQVMCtrl2" desc="(Raw QVM 2 Control) QVM Control 2 output.  0: Off 1: On" len="1"/>
+            <bit number="2" name="Sec_nvout_bits2" desc="(NVout Bit 2) Non-Vital output board Bit 2. 0: Off 1: On" len="1"/>
+            <bit number="3" name="Sec_nvout_bits3" desc="(NVout Bit 3) Non-Vital output board Bit 3. 0: Off 1: On" len="1"/>
+            <bit number="4" name="Sec_nvout_bits4" desc="(NVout Bit 4) Non-Vital output board Bit 4. 0: Off 1: On" len="1"/>
+            <bit number="5" name="Sec_nvout_bits5" desc="(NVout Bit 5) Non-Vital output board Bit 5. 0: Off 1: On" len="1"/>
+            <bit number="6" name="Sec_nvout_bits6" desc="(NVout Bit 6) Non-Vital output board Bit 6. 0: Off 1: On" len="1"/>
+            <bit number="7" name="Sec_nvout_bits7" desc="(NVout Bit 7) Non-Vital output board Bit 7. 0: Off 1: On" len="1"/>
+        </bitfield>
+        <bitfield addr="197" desc="">
+            <bit number="0" name="Sec_RawPAovrd" desc="(Raw PA Override) PA override indication output. 0: Off 1: On" len="1"/>
+            <bit number="1" name="Sec_RawATOTrReq" desc="(Raw ATO Trac Req) ATO traction request output. 0: Off 1: On" len="1"/>
+            <bit number="2" name="Sec_RawNoPsnBrake" desc="(Raw No Psngr Brake) Passenger Service Brake Enable. 0: Off 1: On" len="1"/>
+            <bit number="3" name="Sec_RawBuzzer" desc="(Raw Buzzer) Buzzer Output. 0: Off 1: On" len="1"/>
+            <bit number="4" name="Sec_RawEBReset" desc="(Raw EB Reset) Emergency Brake Reset output. 0: Off 1: On" len="1"/>
+            <bit number="5" name="Sec_nvout_bits13" desc="(NVout Bit 13) Non_Vital output board Bit 13. 0: Off 1: On" len="1"/>
+            <bit number="6" name="Sec_nvout_bits14" desc="(NVout Bit 14) Non_Vital output board Bit 14. 0: Off 1: On" len="1"/>
+            <bit number="7" name="Sec_RawSignalPres" desc="(Raw Signaling Present) Wayside Signaling Present. 0: Off 1: 0n" len="1"/>
+        </bitfield>
+        <bitfield addr="198" desc="">
+            <bit number="0" name="Sec_nvout_bits16" desc="(NVout Bit 16) Non_Vital output board Bit 16. 0: Off 1: On" len="1"/>
+            <bit number="1" name="Sec_nvout_bits17" desc="(NVout Bit 17) Non_Vital output board Bit 17. 0: Off 1: On" len="1"/>
+            <bit number="2" name="Sec_nvout_bits18" desc="(NVout Bit 18) Non_Vital output board Bit 18. 0: Off 1: On" len="1"/>
+            <bit number="3" name="Sec_nvout_bits19" desc="(NVout Bit 19) Non_Vital output board Bit 19. 0: Off 1: On" len="1"/>
+            <bit number="4" name="Sec_nvout_bits20" desc="(NVout Bit 20) Non_Vital output board Bit 20. 0: Off 1: On" len="1"/>
+            <bit number="5" name="Sec_nvout_bits21" desc="(NVout Bit 21) Non_Vital output board Bit 21. 0: Off 1: On" len="1"/>
+            <bit number="6" name="Sec_nvout_bits22" desc="(NVout Bit 22) Non_Vital output board Bit 22. 0: Off 1: On" len="1"/>
+            <bit number="7" name="Sec_nvout_bits23" desc="(NVout Bit 23) Non_Vital output board Bit 23. 0: Off 1: On" len="1"/>
+        </bitfield>
+        <bitfield addr="199" desc="">
+            <bit number="0" name="Sec_nvout_bits24" desc="(NVout Bit 24) Non-Vital output board Bit 24. 0: Off 1: On" len="1"/>
+            <bit number="1" name="Sec_nvout_bits25" desc="(NVout Bit 25) Non-Vital output board Bit 25. 0: Off 1: On" len="1"/>
+            <bit number="2" name="Sec_nvout_bits26" desc="(NVout Bit 26) Non-Vital output board Bit 26. 0: Off 1: 0n" len="1"/>
+            <bit number="3" name="Sec_RawPwireEn" desc="(Raw PWire En) P-wire output enable.  0: Off 1: On" len="1"/>
+            <bit number="4" name="Sec_nvout_bits28" desc="(NVout Bit 28) Non-Vital output board Bit 28. 0: Off 1: 0n" len="1"/>
+            <bit number="5" name="Sec_nvout_bits29" desc="(NVout Bit 29) Non-Vital output board Bit 29. 0: Off 1: On" len="1"/>
+            <bit number="6" name="Sec_RawATCInCntl" desc="(Raw ATC Ctrl Out) ATC in control output.  0: Off 1: On" len="1"/>
+            <bit number="7" name="Sec_RawATCOnOut" desc="(Raw ATC Online) ATC on line output.  0: Off 1: On" len="1"/>
+        </bitfield>
+        <bitfield addr="200" desc="">
+            <bit number="0" name="Sec_RawEB" desc="(Raw EB Request) Emergency Brake Request. 0: Off 1: On" len="1"/>
+            <bit number="1" name="Sec_RawVzero" desc="(Raw VZero) Vzero output.  0: Off 1: On" len="1"/>
+            <bit number="2" name="Sec_RawTracEn" desc="(Raw Trac Enable) Traction Enable 0: Off 1: On" len="1"/>
+            <bit number="3" name="Sec_RawRdoorEn" desc="(Raw RDoor En) Right door enable output 0: Off 1: On" len="1"/>
+            <bit number="4" name="Sec_RawLdoorEn" desc="(Raw LDoor En) Left door enable output 0: Off 1: On" len="1"/>
+            <bit number="5" name="Sec_RawNoDrEnByps" desc="(Raw No Door Bypass) No door enable bypass. 0: Off 1: On" len="1"/>
+            <bit number="6" name="Sec_RawBAOut" desc="(Raw BA Out) BA achieved output.  0: Off 1: On" len="1"/>
+            <bit number="7" name="Sec_RawInvCut" desc="(Raw Inverter Cut) Inverter Cut output.  0: Off 1: On" len="1"/>
+        </bitfield>
+        <var addr="201" name="Sec_ATPRevMajor" desc="(ATP Rev Major) ATP major revision value" type="uint8" len="1"/>
+        <var addr="202" name="Sec_ATPRevMinor" desc="(ATP Rev Minor) ATP minor revision value" type="uint8" len="1"/>
+        <var addr="203" name="Sec_ATPRevTest" desc="(ATP Rev Test) ATP test revision value" type="uint8" len="1"/>
+        <var addr="204" name="Sec_ATPRevUnused" desc="(ATP Rev Unused) ATP unused revision value" type="uint8" len="1"/>
+        <var addr="205" name="Sec_ATORevMajor" desc="(ATO Rev Major) ATO major revision value" type="uint8" len="1"/>
+        <var addr="206" name="Sec_ATORevMinor" desc="(ATO Rev Minor) ATO minor revision value" type="uint8" len="1"/>
+        <var addr="207" name="Sec_ATORevTest" desc="(ATO Rev Test) ATO test revision value" type="uint8" len="1"/>
+        <var addr="208" name="Sec_ATORevUnused" desc="(ATO Rev Unused) ATO unused revision value" type="uint8" len="1"/>
+        <var addr="209" name="Sec_CSRDAppRevMajor" desc="(CSRD App Rev Maj) CSRD Application major revision value" type="uint8" len="1"/>
+        <var addr="210" name="Sec_CSRDAppMinor" desc="(CSRD App Rev Min) CSRD Application minor revision value" type="uint8" len="1"/>
+        <var addr="211" name="Sec_CSRDAppRevTest" desc="(CSRD App Rev Test) CSRD Application test revision value" type="uint8" len="1"/>
+        <var addr="212" name="Sec_CSRDAppRevUnused" desc="(CSRD App Rev Un) CSRD Application unused revision value" type="uint8" len="1"/>
+        <var addr="213" name="Sec_CSRDCfgRevMajor" desc="(CSRD Cfg Rev Maj) CSRD Configuration major revision value" type="uint8" len="1"/>
+        <var addr="214" name="Sec_CSRDCfgRevMinor" desc="(CSRD Cfg Rev Min) CSRD Configuration minor revision value" type="uint8" len="1"/>
+        <var addr="215" name="Sec_CSRDCfgRevTest" desc="(CSRD Cfg Rev Test) CSRD Configuration test revision value" type="uint8" len="1"/>
+        <var addr="216" name="Sec_CSRDCfgRevUnused" desc="(CSRD Cfg Rev Un) CSRD Configuration unused revision value" type="uint8" len="1"/>
+        <var addr="217" name="Sec_CSRDProjCfgRevMajor" desc="(CSRD Proj Rev Maj) CSRD Project Configuration major revision value" type="uint8" len="1"/>
+        <var addr="218" name="Sec_CSRDProjCfgRevMinor" desc="(CSRD Proj Rev Min) CSRD Project Configuration minor revision value" type="uint8" len="1"/>
+        <var addr="219" name="Sec_CSRDProjCfgRevTest" desc="(CSRD Proj Rev Test) CSRD Project Configuration test revision value" type="uint8" len="1"/>
+        <var addr="220" name="Sec_CSRDProjCfgRevUnused" desc="(CSRD Proj Rev Un) CSRD Project Configuration unused revision value" type="uint8" len="1"/>
+        <bitfield addr="221" desc="">
+            <bit number="0" name="Sec_testbitsspare" desc="(Test Spare Bit) spare" len="5"/>
+            <bit number="5" name="Sec_SourceOut1" desc="(Source Output) Source output 1.  0: Off 1: On" len="1"/>
+            <bit number="6" name="Sec_SinkOut2" desc="(Sink Output 2) Sink output 2.  0: Off 1: On" len="1"/>
+            <bit number="7" name="Sec_SinkOut1" desc="(Sink Output 1) Sink output 1.  0: Off 1: On" len="1"/>
+        </bitfield>
+        <bitfield addr="222" desc="">
+            <bit number="0" name="Sec_ATPTestCanRun" desc="(ATP can run Test) Can the ATP run a self test? 0: can not run a test, 1: can run a test" len="1"/>
+            <bit number="1" name="Sec_ATPTestRunning" desc="(ATP Test running) Is the ATP running a test? 0: no 1: yes" len="1"/>
+            <bit number="2" name="Sec_ATPTestCanceled" desc="(ATP Test canceled) Has the ATP canceled the current test? 0: no 1: yes" len="1"/>
+            <bit number="3" name="Sec_ATPTestPass" desc="(ATP Test Pass) Has the current ATP test has completed and Passed? 0: no, 1:yes" len="1"/>
+            <bit number="4" name="Sec_ATPTestFailed" desc="(ATP Test Failed) Has the current ATP test has completed and Failed? 0: no, 1:yes" len="1"/>
+        </bitfield>
+        <bitfield addr="223" desc="">
+            <bit number="0" name="Sec_ATOTestCanRun" desc="(ATO can run Test) Can the ATO run a self test? 0: can not run a test, 1: can run a test" len="1"/>
+            <bit number="1" name="Sec_ATOTestRunning" desc="(ATO Test running) Is the ATO running a test? 0: no 1: yes" len="1"/>
+            <bit number="2" name="Sec_ATOTestCanceled" desc="(ATO Test canceled) Has the ATO canceled the current test? 0: no 1: yes" len="1"/>
+            <bit number="3" name="Sec_ATOTestPass" desc="(ATO Test Pass) Has the current ATO test has completed and Passed? 0: no, 1:yes" len="1"/>
+            <bit number="4" name="Sec_ATOTestFailed" desc="(ATO Test Failed) Has the current ATO test has completed and Failed? 0: no, 1:yes" len="1"/>
+        </bitfield>
+        <bitfield addr="224" desc="">
+            <bit number="0" name="Sec_ADCLTestCanRun" desc="(ADCL can run Test) Can the ADCL test run? 0: can not run a test, 1: can run a test" len="1"/>
+            <bit number="1" name="Sec_ADCLTestRunning" desc="(ADCL Test running) Is the ADCL test running? 0: no 1: yes" len="1"/>
+            <bit number="2" name="Sec_ADCLTestCanceled" desc="(ADCL Test canceled) Has the ADCL test been canceled? 0: no 1: yes" len="1"/>
+            <bit number="3" name="Sec_ADCLTestPass" desc="(ADCL Test Pass) Has the current ADCL test has completed and Passed? 0: no, 1:yes" len="1"/>
+            <bit number="4" name="Sec_ADCLTestFailed" desc="(ADCL Test Failed) Has the current ADCL test has completed and Failed? 0: no, 1:yes" len="1"/>
+        </bitfield>
+        <var addr="225" name="Sec_ATPutilization" desc="(ATP % used) percentage of CPU cycle time used by ATP (0-100)" type="uint8" len="1"/>
+        <var addr="226" name="Sec_ATOutilization" desc="(ATO % used) percentage of CPU cycle time used by ATO (0-100)" type="uint8" len="1"/>
+        <bitfield addr="227" desc="">
+            <bit number="0" name="Sec_ATO_PSS1Missed" desc="(PSS Beacon 1 Missed) PSS Beacon 1 Missed" len="1"/>
+            <bit number="1" name="Sec_ATO_PSS2Missed" desc="(PSS Beacon 2 Missed) PSS Beacon 2 Missed" len="1"/>
+            <bit number="2" name="Sec_ATO_PSS3Missed" desc="(PSS Beacon 3 Missed) PSS Beacon 3 Missed" len="1"/>
+            <bit number="3" name="Sec_ATO_POS1Missed" desc="(POS Beacon 1 Missed) POS Beacon 1 Missed" len="1"/>
+            <bit number="4" name="Sec_ATO_POS2Missed" desc="(POS Beacon 2 Missed) POS Beacon 2 Missed" len="1"/>
+            <bit number="5" name="Sec_ATO_AnySeqErr" desc="(Any Sequence Error) Any Sequence Error" len="1"/>
+        </bitfield>
+        <bitfield addr="228" desc="">
+            <bit number="0" name="Sec_ATO_PSSDoorOpenMissingError" desc="(PSS Door Open Miss Err) PSS Door Open Missing Error" len="1"/>
+            <bit number="1" name="Sec_ATO_POSDoorOpenMissingError" desc="(POS Door Open Miss Err) POS Door Open Missing Error" len="1"/>
+            <bit number="2" name="Sec_ATO_VZeroStatSigErr" desc="(VZero Stat Sig Err) Station Signal Received at stop" len="1"/>
+            <bit number="3" name="Sec_ATO_DegradedStopError" desc="(Degraded Stop Error) Degraded Stop Error" len="1"/>
+            <bit number="4" name="Sec_ATO_PrevPSSStatSigLostErr" desc="(Prev PSS Stat Sig Lost Err) Previous PSS Station Signal Lost Error" len="1"/>
+            <bit number="5" name="Sec_ATO_PrevPOSStatSigLostErr" desc="(Prev POS Stat Sig Lost Err) Previous POS Station Signal Lost Error" len="1"/>
+        </bitfield>
+        <bitfield addr="229" desc="">
+            <bit number="0" name="Sec_ATO_PosPositionError" desc="(POS Position Err) Programmed operation stop position error" len="1"/>
+            <bit number="1" name="Sec_ATO_PosSequenceError" desc="(POS Seq Err) Operation stop sequence error" len="1"/>
+            <bit number="2" name="Sec_ATO_PosStaSigLostError" desc="(POS Stat Sig Lost Err) Programmed operation stop station signal lost error" len="1"/>
+            <bit number="3" name="Sec_ATO_PosBeaconToleranceError" desc="(POS Beacon Tol Err) POS Beacon distance tolerance error" len="1"/>
+            <bit number="4" name="Sec_ATO_PosMissedBeaconError" desc="(POS Missed Beacon Err) Programmed Operation Stop beacon missed" len="1"/>
+            <bit number="5" name="Sec_ATO_UnexpectedPssBeaconError" desc="(Unex PSS Beacon Err) Unexpected PSS beacon detected" len="1"/>
+            <bit number="6" name="Sec_ATO_UnexpectedPosBeaconError" desc="(Unex POS Beacon Err) Unexpected POS beacon detected" len="1"/>
+            <bit number="7" name="Sec_ATO_UnexpectedStaSigError" desc="(Unex Stat Sig Err) Unexpected Station Signal Received" len="1"/>
+        </bitfield>
+        <bitfield addr="230" desc="">
+            <bit number="0" name="Sec_ATO_PssPositionError" desc="(PSS Position Err) Programmed station stop position error" len="1"/>
+            <bit number="1" name="Sec_ATO_PssSequenceError" desc="(PSS Seq Err) Station stop sequence error" len="1"/>
+            <bit number="2" name="Sec_ATO_PssDoorOpenSeqError" desc="(PSS Door Open Seq Err) Programmed Station Stop door open sequence error" len="1"/>
+            <bit number="3" name="Sec_ATO_PssStaSigLostError" desc="(PSS Stat Sig Lost Err) Station Signal Lost Error" len="1"/>
+            <bit number="4" name="Sec_ATO_PssBeaconToleranceError" desc="(PSS Beacon Tol Err) PSS Beacon distance tolerance error" len="1"/>
+            <bit number="5" name="Sec_ATO_PssMissedBeaconError" desc="(PSS Missed Beacon Err) Programmed Station Stop beacon missed" len="1"/>
+            <bit number="6" name="Sec_ATO_PssStaSigMissingError" desc="(PSS Stat Sig Missing Err) Programmed Station Stop Station Signal Missing Error" len="1"/>
+            <bit number="7" name="Sec_ATO_PosInitiationError" desc="(POS Init Err) Operation Stop Initiation error" len="1"/>
+        </bitfield>
+        <bitfield addr="231" desc="">
+            <bit number="0" name="Sec_ATO_PssCompleted" desc="(PSS Completed) Programmed station stop completed" len="1"/>
+            <bit number="1" name="Sec_ATO_PosInStationCompleted" desc="(PSS In Stat Comp) Station stop in station completed" len="1"/>
+            <bit number="2" name="Sec_ATO_PosOutStationCompleted" desc="(PSS Out Stat Comp) Programmed Station Stop out of station completed" len="1"/>
+            <bit number="3" name="Sec_ATO_PcoF35AtOccupancy" desc="(PCO F35 At Occ) Program Coast Operation F35 at occupancy" len="1"/>
+            <bit number="4" name="Sec_ATO_PcoAllowed" desc="(PCO Allowed) Program Coast Operation Allowed" len="1"/>
+            <bit number="5" name="Sec_ATO_PcoEnforced" desc="(PCO Enforced) Program Coast Operation Enforced" len="1"/>
+            <bit number="6" name="Sec_ATO_PcoIgnored" desc="(PCO Ignored) Program Coast Operation Ignored" len="1"/>
+            <bit number="7" name="Sec_ATO_ProgStopSeqErr" desc="(Prog Stop Seq Error) Program Stop Sequence Error" len="1"/>
+        </bitfield>
+        <bitfield addr="232" desc="">
+            <bit number="0" name="Sec_ATO_PssActive" desc="(PSS Active) Programmed station stop active" len="1"/>
+            <bit number="1" name="Sec_ATO_PosActive" desc="(POS Active) Programmed operation stop active" len="1"/>
+            <bit number="2" name="Sec_ATO_PssActiveInStation" desc="(PSS Active In Stat) Programmed station stop active in station" len="1"/>
+            <bit number="3" name="Sec_ATO_PosActiveInStation" desc="(POS Active In Stat) Programmed operation stop active in station" len="1"/>
+            <bit number="4" name="Sec_ATO_ErrPADepartAborted" desc="(PA Dep Abort Err) PA Departure Aborted Error" len="1"/>
+            <bit number="5" name="Sec_ATO_ErrLostDTAButton" desc="(Lost DTA Button Err) Lost DTA Button Error" len="1"/>
+            <bit number="6" name="Sec_ATO_F15StatSigLostErr" desc="(F15 Stat Sig Lost Err) F15 Station Signal Lost Error" len="1"/>
+            <bit number="7" name="Sec_ATO_PrevF15StatSigLostErr" desc="(Prev F15 Stat Sig Lost Err) Previous F15 Station Signal Lost Error" len="1"/>
+        </bitfield>
+        <var addr="233" name="Sec_ATO_DistancePastStation" desc="(Dist Past Stat) The distance past the station stop in 0.001 meters" type="uint16" len="1"/>
+        <bitfield addr="235" desc="">
+            <bit number="0" name="Sec_ATO_PssBeaconRawDetecting" desc="(PSS Beacon Raw Detecting) Programmed station stop beacon raw detecting" len="1"/>
+            <bit number="1" name="Sec_ATO_PosBeaconRawDetecting" desc="(POS Beacon Raw Detecting) Programmed operation stop beacon raw detecting" len="1"/>
+            <bit number="2" name="Sec_ATO_PcoBeaconRawDetecting" desc="(PCO Beacon Raw Detecting) Programmed beacon raw detecting" len="1"/>
+            <bit number="3" name="Sec_ATO_ProgStopActive" desc="(PS Active) Programmed stop active" len="1"/>
+            <bit number="4" name="Sec_ATO_ProgStopAtStatActive" desc="(PS At Stat Active) Programmed stop at station active" len="1"/>
+            <bit number="5" name="Sec_ATO_ProgStopComplete" desc="(PS Complete) Programmed stop complete" len="1"/>
+            <bit number="6" name="Sec_ATO_ProgStopAtStatComplete" desc="(PS At Stat Complete) Programmed stop at station complete" len="1"/>
+        </bitfield>
+        <var addr="236" name="Sec_SpareByte09" desc="(SB 9) Unused" type="uint8" len="2"/>
+        <var addr="238" name="SESAM_TachCount1" desc="(Tach 3 Ch1C Count) Tachometer 3 Channel 1C filtered counts." type="uint16" len="1"/>
+        <var addr="240" name="SESAM_TachCount2" desc="(Tach 1 Ch2D Count) Tachometer 1 Channel 2D filtered counts." type="uint16" len="1"/>
+        <var addr="242" name="SESAM_Speed1" desc="(Tach 3 Ch1C Speed) Speed from tachometer 3 Channel 1C. [KPH * 10]" type="uint16" len="1"/>
+        <var addr="244" name="SESAM_Speed2" desc="(Tach 1 Ch2D Speed) Speed from tachometer 1 Channel 2D. [KPH * 10]" type="uint16" len="1"/>
+        <var addr="246" name="SESAM_Odometer" desc="(Odometer Km)  The total distance traveled by the train in kilometers. 0 - 100,000,000 km" type="uint32" len="1"/>
+        <var addr="250" name="SESAM_OdoFraction" desc="(Odometer Meters) The current kilometer fraction of the odometer in meters. 0 - 999" type="uint16" len="1"/>
+        <var addr="252" name="SESAM_DistanceThisCycle" desc="(Cycle Distance) The distance traveled this 250 ms cycle in millimeters. 0 - 65535 mm" type="uint16" len="1"/>
+        <var addr="254" name="SESAM_TachPulseSum" desc="(SESAM Tach Pulse Sum) Sum of all tach pulses received. 0-0xFFFFFFFF" type="uint32" len="1"/>
+        <var addr="258" name="SESAM_RawTachCount1" desc="(Tach 3 Ch1C Raw Count) Tachometer 3 Channel 1C raw counts." type="uint16" len="1"/>
+        <var addr="260" name="SESAM_RawTachCount2" desc="(Tach 1 Ch2D Raw Count) Tachometer 1 Channel 2D raw counts." type="uint16" len="1"/>
+        <var addr="262" name="SESAM_OtherHealthStatus" desc="(Other Health Status) Status of other SESAM ATC units from Internal message. 0: N/A 1: Out of Service 2: Pri Only, 2: Sec Only, 3: Both Up" type="uint8" len="1"/>
+        <var addr="263" name="SESAM_SAMSAC_HealthStatus" desc="(Health to SAMSAC) Local ATC health status sent to SAM-SAC. 0: Invalid, 1: Normal, 2: Degraded, 3: Out of Service, 4: MaintMode, 5: Test, 6: Start, 7: Shutdown" type="uint8" len="1"/>
+        <var addr="264" name="SESAM_LocalHealth" desc="(ATC Health Status) Health of both local ATC units. 0: N/A 1: Out of Service 2: Pri Only, 2: Sec Only, 3: Both Up" type="uint8" len="1"/>
+        <bitfield addr="265" desc="">
+            <bit number="0" name="SESAM_PrimaryCommStatus" desc="(Prim Comm Stat) Status of link to Primary ATC. 0: Down 1: Up" len="1"/>
+            <bit number="1" name="SESAM_SecondaryCommStatus" desc="(Sec Comm Stat) Status of link to Secondary ATC. 0: Down 1: Up" len="1"/>
+            <bit number="2" name="SESAM_SAMSACCommStatus" desc="(SAMSAC Comm Stat) Status of link to SAM-SAC. 0: Down 1: Up" len="1"/>
+            <bit number="3" name="SESAM_FreshRxInternalData" desc="(Fresh Int Msg Stat) Status of receiving a CTInternal message from the other SESAM. 0: No Msg, 1: New Msg" len="1"/>
+            <bit number="4" name="SESAM_IntersysSource" desc="(Intersys Source) Source of the CTIntersys message. 0: No, 1: Yes" len="1"/>
+            <bit number="5" name="SESAM_RtClockSync" desc="(RealTime Clock Sync) SESAM RealTime clock synchronized with NTP Server. 0: No, 1: Yes" len="1"/>
+            <bit number="6" name="SESAM_QVM_Active" desc="(QVM Active) QVM Operational Status. 0: Off, 1: On" len="1"/>
+        </bitfield>
+        <var addr="266" name="SESAM_EventsRecording" desc="(Event Record) Count of events currently recording. 0 - 10" type="uint8" len="1"/>
+        <var addr="267" name="SESAM_CircLogBegin" desc="(Circ Log Begin) First circular event entry. 0 - 1999" type="uint16" len="1"/>
+        <var addr="269" name="SESAM_CircLogEnd" desc="(Circ Log End) Last circular event entry. 0 - 1999" type="uint16" len="1"/>
+        <bitfield addr="271" desc="">
+            <bit number="0" name="SESAM_Startup" desc="(SESAM Startup Status) SESAM startup status. 0: Running, 1: Startup" len="1"/>
+            <bit number="1" name="SESAM_DegradedState" desc="(Degraded State Active) ATC in degraded state. 0: Not Degraded, 1: Degraded" len="1"/>
+            <bit number="2" name="SESAM_OutOfService" desc="(ATC Out Of Service) ATC out of service. 0: In Service, 1: Out of Service" len="1"/>
+            <bit number="3" name="SESAM_DecelMisMatch" desc="(Decel Mismatch) SESAM decelerometer mismatch error. 0: OK, 1: Error" len="1"/>
+            <bit number="4" name="SESAM_InvalidPosition" desc="(Invalid Position) The localization position is invalid.  0: Position OK, 1: Position Invalid" len="1"/>
+            <bit number="5" name="SESAM_USBNotConnected" desc="(USB Not Connected) The SESAM is unable to read from or write to the USB drive. 0: USB Connected, 1: USB Not Connected" len="1"/>
+        </bitfield>
+        <var addr="272" name="SESAM_InvPosReason" desc="(Invalid Position Reason) Reason that position was declared invalid. (0: Startup Pos, 1: Operator Entry, 2: Other SESAM, 3: Snap After FVd, 4: FVd Track Change, 5: No Stat On Line, 6: No Stat In Radius, 7: Stat Pos Off Map, 8: Pos Off Map)" type="uint8" len="1"/>
+        <var addr="273" name="SESAM_UserEvent01" desc="(User Event 1) User defined event 01 is present." type="uint8" len="1"/>
+        <var addr="274" name="SESAM_UserEvent02" desc="(User Event 2) User defined event 02 is present." type="uint8" len="1"/>
+        <var addr="275" name="SESAM_UserEvent03" desc="(User Event 3) User defined event 03 is present." type="uint8" len="1"/>
+        <var addr="276" name="SESAM_UserEvent04" desc="(User Event 4) User defined event 04 is present." type="uint8" len="1"/>
+        <var addr="277" name="SESAM_UserEvent05" desc="(User Event 5) User defined event 05 is present." type="uint8" len="1"/>
+        <var addr="278" name="SESAM_UserEvent06" desc="(User Event 6) User defined event 06 is present." type="uint8" len="1"/>
+        <var addr="279" name="SESAM_UserEvent07" desc="(User Event 7) User defined event 07 is present." type="uint8" len="1"/>
+        <var addr="280" name="SESAM_UserEvent08" desc="(User Event 8) User defined event 08 is present." type="uint8" len="1"/>
+        <var addr="281" name="SESAM_UserEvent09" desc="(User Event 9) User defined event 09 is present." type="uint8" len="1"/>
+        <var addr="282" name="SESAM_UserEvent10" desc="(User Event 10) User defined event 10 is present." type="uint8" len="1"/>
+        <var addr="283" name="SESAM_UserEvent11" desc="(User Event 11) User defined event 11 is present." type="uint8" len="1"/>
+        <var addr="284" name="SESAM_UserEvent12" desc="(User Event 12) User defined event 12 is present." type="uint8" len="1"/>
+        <var addr="285" name="SESAM_UserEvent13" desc="(User Event 13) User defined event 13 is present." type="uint8" len="1"/>
+        <var addr="286" name="SESAM_UserEvent14" desc="(User Event 14) User defined event 14 is present." type="uint8" len="1"/>
+        <var addr="287" name="SESAM_UserEvent15" desc="(User Event 15) User defined event 15 is present." type="uint8" len="1"/>
+        <var addr="288" name="SESAM_UserEvent16" desc="(User Event 16) User defined event 16 is present." type="uint8" len="1"/>
+        <var addr="289" name="SESAM_UserEvent17" desc="(User Event 17) User defined event 17 is present." type="uint8" len="1"/>
+        <var addr="290" name="SESAM_UserEvent18" desc="(User Event 18) User defined event 18 is present." type="uint8" len="1"/>
+        <var addr="291" name="SESAM_UserEvent19" desc="(User Event 19) User defined event 19 is present." type="uint8" len="1"/>
+        <var addr="292" name="SESAM_UserEvent20" desc="(User Event 20) User defined event 20 is present." type="uint8" len="1"/>
+        <var addr="293" name="SESAM_UserEvent21" desc="(User Event 21) User defined event 21 is present." type="uint8" len="1"/>
+        <var addr="294" name="SESAM_UserEvent22" desc="(User Event 22) User defined event 22 is present." type="uint8" len="1"/>
+        <var addr="295" name="SESAM_UserEvent23" desc="(User Event 23) User defined event 23 is present." type="uint8" len="1"/>
+        <var addr="296" name="SESAM_UserEvent24" desc="(User Event 24) User defined event 24 is present." type="uint8" len="1"/>
+        <var addr="297" name="SESAM_UserEvent25" desc="(User Event 25) User defined event 25 is present." type="uint8" len="1"/>
+        <var addr="298" name="SESAM_UserEvent26" desc="(User Event 26) User defined event 26 is present." type="uint8" len="1"/>
+        <var addr="299" name="SESAM_UserEvent27" desc="(User Event 27) User defined event 27 is present." type="uint8" len="1"/>
+        <var addr="300" name="SESAM_UserEvent28" desc="(User Event 28) User defined event 28 is present." type="uint8" len="1"/>
+        <var addr="301" name="SESAM_UserEvent29" desc="(User Event 29) User defined event 29 is present." type="uint8" len="1"/>
+        <var addr="302" name="SESAM_UserEvent30" desc="(User Event 30) User defined event 30 is present." type="uint8" len="1"/>
+        <var addr="303" name="SESAM_TrainOrientation" desc="(Train Orient) Train Orientation. 0: Normal (with track default) 1: Reverse (against track default), 255: Invalid Pos" type="uint8" len="1"/>
+        <var addr="304" name="SESAM_MainLineDet" desc="(Main Line Det) Main Line detected. 0: Undefined, 1: Not on Main Line, 2: On Main Line, 255: Invalid Pos" type="uint8" len="1"/>
+        <var addr="305" name="SESAM_CenterLineId" desc="(Center Line ID) Line ID code. 1- 12" type="uint8" len="1"/>
+        <var addr="306" name="SESAM_CenterTrack" desc="(Center Track ID) Track ID code. 1 - 7" type="uint8" len="1"/>
+        <var addr="307" name="SESAM_CenterLineSection" desc="(Center Line Segment) PK System Line Segment ID code. 1- 60" type="uint8" len="1"/>
+        <var addr="308" name="SESAM_CenterLocation" desc="(Center Location) Point Kilometric location. 0 - 0xffff" type="uint16" len="1"/>
+        <var addr="310" name="SESAM_CenterLineText" desc="(Center Line Text) Line ID text string." type="char" len="7"/>
+        <var addr="317" name="SESAM_R1LineId" desc="(R1 Line ID) Line ID code. 1- 12" type="uint8" len="1"/>
+        <var addr="318" name="SESAM_R1Track" desc="(R1 Track ID) Track ID code. 1 - 7" type="uint8" len="1"/>
+        <var addr="319" name="SESAM_R1LineSection" desc="(R1 Line Segment) PK System Line Segment ID code. 1- 60" type="uint8" len="1"/>
+        <var addr="320" name="SESAM_R1Location" desc="(R1 Location) Point Kilometric location. 0 - 0xffff" type="uint16" len="1"/>
+        <var addr="322" name="SESAM_R1LineText" desc="(R1 Line Text) Line ID text string." type="char" len="7"/>
+        <var addr="329" name="SESAM_R9LineId" desc="(R9 LineID) Line ID code. 1- 12" type="uint8" len="1"/>
+        <var addr="330" name="SESAM_R9Track" desc="(R9 Track ID) Track ID code. 1 - 7" type="uint8" len="1"/>
+        <var addr="331" name="SESAM_R9LineSection" desc="(R9 Line Segment) PK System Line Segment ID code. 1- 60" type="uint8" len="1"/>
+        <var addr="332" name="SESAM_R9Location" desc="(R9 location) Point Kilometric location. 0 - 0xffff" type="uint16" len="1"/>
+        <var addr="334" name="SESAM_R9LineText" desc="(R9 Line Text) Line ID text string." type="char" len="7"/>
+        <var addr="341" name="TCMS_CfgRevMajor" desc="(TCMS XML Rev Maj) TCMS XML Configuration major revision value. (1-99)" type="uint8" len="1"/>
+        <var addr="342" name="TCMS_CfgRevMinor" desc="(TCMS XML Rev Min) TCMS XML Configuration minor revision value. (0-99)" type="uint8" len="1"/>
+        <var addr="343" name="TCMS_CfgRevTest" desc="(TCMS XML Rev Test) TCMS XML Configuration test revision value. (0-99)" type="uint8" len="1"/>
+        <var addr="344" name="TCMS_CfgRevUnused" desc="(TCMS XML Rev Un) TCMS XML Configuration unused revision value. (0-99)" type="uint8" len="1"/>
+        <var addr="345" name="SESAM_CfgRevMajor" desc="(SESAM XML Rev Maj) SESAM XML Configuration major revision value. (1-99)" type="uint8" len="1"/>
+        <var addr="346" name="SESAM_CfgRevMinor" desc="(SESAM XML Rev Min) SESAM XML Configuration minor revision value. (0-99)" type="uint8" len="1"/>
+        <var addr="347" name="SESAM_CfgRevTest" desc="(SESAM XML Rev Test) SESAM XML Configuration test revision value. (0-99)" type="uint8" len="1"/>
+        <var addr="348" name="SESAM_CfgRevUnused" desc="(SESAM XML Rev Un) SESAM XML Configuration unused revision value. (0-99)" type="uint8" len="1"/>
+        <var addr="349" name="SESAM_PKMapRevMajor" desc="(SESAM Map Rev Maj) SESAM PK Map Configuration major revision value. (1-99)" type="uint8" len="1"/>
+        <var addr="350" name="SESAM_PKMapRevMinor" desc="(SESAM Map Rev Min) SESAM PK Map Configuration minor revision value. (0-99)" type="uint8" len="1"/>
+        <var addr="351" name="SESAM_PKMapRevTest" desc="(SESAM Map Rev Test) SESAM PK Map Configuration test revision value. (0-99)" type="uint8" len="1"/>
+        <var addr="352" name="SESAM_PKMapRevUnused" desc="(SESAM Map Rev Un) SESAM PK Map Configuration unused revision value. (0-99)" type="uint8" len="1"/>
+        <var addr="353" name="SESAM_PriLostMsgCnt" desc="(Pri ATP Lost Count) Count of messages lost from primary ATP." type="uint8" len="1"/>
+        <var addr="354" name="SESAM_PriSeqNum" desc="(Pri ATP Seq Num) Last ATP sequence number." type="uint8" len="1"/>
+        <var addr="355" name="SESAM_SecLostMsgCnt" desc="(Sec ATP Lost Count) Count of messages lost from primary ATP." type="uint8" len="1"/>
+        <var addr="356" name="SESAM_SecSeqNum" desc="(Sec ATP Seq Num) Last ATP sequence number." type="uint8" len="1"/>
+        <var addr="357" name="SESAM_PriBadMsgLenCount" desc="(Pri ATP Bad Msg Len Count) Count of ATP messages lost due to incorrect message length." type="uint8" len="1"/>
+        <var addr="358" name="SESAM_PriBadCheckSumCount" desc="(Pri C/S Error Count) Count of ATP messages lost due to checksum error." type="uint8" len="1"/>
+        <var addr="359" name="SESAM_PriPMsgCount" desc="(Pri Msg This Cycle) Count of ATP messages processed this cycle." type="uint8" len="1"/>
+        <var addr="360" name="SESAM_SecBadMsgLenCount" desc="(Sec ATP Bad Msg Len Count) Count of ATP messages lost due to incorrect message length." type="uint8" len="1"/>
+        <var addr="361" name="SESAM_SecBadCheckSumCount" desc="(Sec C/S Error Count) Count of ATP messages lost due to checksum error." type="uint8" len="1"/>
+        <var addr="362" name="SESAM_SecPMsgCount" desc="(Sec Msg This Cycle) Count of ATP messages processed this cycle." type="uint8" len="1"/>
+        <var addr="363" name="SESAM_PriUartError" desc="(Pri UART Error) UART chip error status. 0: No Error 1: Clear Error 2: Chip Error 3: Read Error" type="uint8" len="1"/>
+        <var addr="364" name="SESAM_SecUartError" desc="(Sec UART Error) UART chip error status. 0: No Error 1: Clear Error 2: Chip Error 3: Read Error" type="uint8" len="1"/>
+        <var addr="365" name="SESAM_PTUConnectStatus" desc="(PTU Connection Status) PTU administrator connection status. 0: Not Connected, 1: Connected, 2: Admin Connected" type="uint8" len="1"/>
+        <var addr="366" name="SESAM_ParamReqStatus" desc="(PTU Param Req Stat) PTU parameter change request status. 0x00: Timed Out, 0x01: Success, 0x03: ATC Denied Request" type="uint8" len="1"/>
+        <var addr="367" name="SESAM_LogStatus" desc="(PTU Log Req Stat) PTU log request status." type="uint8" len="1"/>
+        <var addr="368" name="SESAM_SWUP_Status" desc="(PTU Software Upload) PTU software upload status." type="uint8" len="1"/>
+        <var addr="369" name="SESAM_PriATPRev" desc="(Primary ATP Revision) Primary ATP revision." type="char" len="11"/>
+        <var addr="380" name="SESAM_PriATORev" desc="(Primary ATO Revision) Primary ATO revision." type="char" len="11"/>
+        <var addr="391" name="SESAM_PriCSRDRev" desc="(Primary CSRD Revision) Primary CSRD revision." type="char" len="11"/>
+        <var addr="402" name="SESAM_PriCfgCSRDRev" desc="(Primary CFG CSRD Revision) Primary CSRD configuration revision." type="char" len="11"/>
+        <var addr="413" name="SESAM_PriPrjCSRDRev" desc="(Primary PRJ CSRD Revision) Primary CSRD project configuration revision." type="char" len="11"/>
+        <var addr="424" name="SESAM_SecATPRev" desc="(Secondary ATP Revision) Secondary ATP revision." type="char" len="11"/>
+        <var addr="435" name="SESAM_SecATORev" desc="(Secondary ATO Revision) Secondary ATO revision." type="char" len="11"/>
+        <var addr="446" name="SESAM_SecCSRDRev" desc="(Secondary CSRD Revision) Secondary CSRD revision." type="char" len="11"/>
+        <var addr="457" name="SESAM_SecCfgCSRDRev" desc="(Secondary CFG CSRD Revision) Secondary CSRD configuration revision." type="char" len="11"/>
+        <var addr="468" name="SESAM_SecPrjCSRDRev" desc="(Secondary PRJ CSRD Revision) Secondary CSRD project configuration revision." type="char" len="11"/>
+        <var addr="479" name="SESAM_Rev" desc="(SESAM Revision) SESAM revision." type="char" len="11"/>
+        <var addr="490" name="PKMap_Rev" desc="(PK Map Revision) PK Map revision." type="char" len="11"/>
+        <bitfield addr="501" desc="">
+            <bit number="0" name="SESAM_PriVitalOutputTestCanRun" desc="(ATP Can Run Primary Vital Output Self Test) Can the ATP run a self test? 0: Cannot Run Test, 1: Can Run Test" len="1"/>
+            <bit number="1" name="SESAM_PriVitalOutputTestRunning" desc="(Primary Vital Output Self Test Running) Is the ATP running a self test? 0: No, 1: Yes" len="1"/>
+            <bit number="2" name="SESAM_PriVitalOutputTestCanceled" desc="(Primary Vital Output Self Test Cancelled) Has the ATP cancelled the current self test? 0: No, 1: Yes" len="1"/>
+            <bit number="3" name="SESAM_PriVitalOutputTestPass" desc="(Primary Vital Output Self Test Pass) Has the current self test test completed and passed? 0: No, 1: Yes" len="1"/>
+            <bit number="4" name="SESAM_PriVitalOutputTestFailed" desc="(Primary Vital Output Self Test Failed) Has the current self test test completed and failed? 0: No, 1: Yes" len="1"/>
+            <bit number="5" name="SESAM_PriVitalOutputTestNoResult" desc="(Primary Vital Output Self Test No Result) No Result. 0: No, 1: Yes" len="1"/>
+        </bitfield>
+        <bitfield addr="502" desc="">
+            <bit number="0" name="SESAM_SecVitalOutputTestCanRun" desc="(ATP Can Run Secondary Vital Output Self Test) Can the ATP run a self test? 0: Cannot Run Test, 1: Can Run Test" len="1"/>
+            <bit number="1" name="SESAM_SecVitalOutputTestRunning" desc="(Secondary Vital Output Self Test Running) Is the ATP running s self test? 0: No, 1: Yes" len="1"/>
+            <bit number="2" name="SESAM_SecVitalOutputTestCanceled" desc="(Secondary Vital Output Self Test Cancelled) Has the ATP cancelled the current self test? 0: No, 1: Yes" len="1"/>
+            <bit number="3" name="SESAM_SecVitalOutputTestPass" desc="(Secondary Vital Output Self Test Pass) Has the current self test completed and passed? 0: No, 1: Yes" len="1"/>
+            <bit number="4" name="SESAM_SecVitalOutputTestFailed" desc="(Secondary Vital Output Self Test Failed) Has the current self test completed and failed? 0: No, 1: Yes" len="1"/>
+            <bit number="5" name="SESAM_SecVitalOutputTestNoResult" desc="(Secondary Vital Output Self Test No Result) No Result. 0: No, 1: Yes" len="1"/>
+        </bitfield>
+        <bitfield addr="503" desc="">
+            <bit number="0" name="SESAM_QVMTestCanRun" desc="(ATP Can Run QVM Self Test) Can the ATP run a self test? 0: Cannot Run Test, 1: Can Run Test" len="1"/>
+            <bit number="1" name="SESAM_QVMTestRunning" desc="(QVM Self Test Running) Is the ATP running a self test? 0: No, 1: Yes" len="1"/>
+            <bit number="2" name="SESAM_QVMTestCanceled" desc="(QVM Self Test Cancelled) Has the ATP cancelled the current self test? 0: No, 1: Yes" len="1"/>
+            <bit number="3" name="SESAM_QVMTestPass" desc="(QVM Self Test Pass) Has the current self test completed and passed? 0: No, 1: Yes" len="1"/>
+            <bit number="4" name="SESAM_QVMTestFailed" desc="(QVM Self Test Failed) Has the current self test completed and failed? 0: No, 1: Yes" len="1"/>
+            <bit number="5" name="SESAM_QVMTestNoResult" desc="(QVM Self Test No Result) No Result. 0: No, 1: Yes" len="1"/>
+        </bitfield>
+        <var addr="504" name="SESAM_TrainNumber" desc="(Train Number) Spare." type="uint8" len="16"/>
+        <var addr="520" name="SESAM_CabType" desc="(Cab Type) Cab Type. 0: ?, 1: R1, 2: R9" type="uint8" len="1"/>
+        <var addr="521" name="SESAM_CCUOGlobalCstLifeSign" desc="(CCUOGlobalCst Message LifeSign) Life sign from CCUOGlobalCst message." type="uint16" len="1"/>
+        <var addr="523" name="SESAM_CCUOLastValidLifeSign" desc="(CCUOGlobalCst Message Last Valid LifeSign) Last valid life sign from CCUOGlobalCst message." type="uint16" len="1"/>
+        <var addr="525" name="SESAM_CCUOGlobalCstValidBit" desc="(CCUOGlobalCst Message Valid Bit) Valid bit from CCUOGlobalCst message." type="uint8" len="1"/>
+        <var addr="526" name="SESAM_CAAInterSys1LifeSign" desc="(CAAInterSys1 Message LifeSign) Life sign from CAAInterSys1 message." type="uint16" len="1"/>
+        <var addr="528" name="SESAM_CAALastValidLifeSign" desc="(CAAInterSys1 Message Last Valid LifeSign) Last valid life sign from CAAInterSys1 message." type="uint16" len="1"/>
+        <var addr="530" name="SESAM_CAAInterSys1ValidBit" desc="(CAAInterSys1 Message Valid Bit) Valid bit from CAAInterSys1 message." type="uint8" len="1"/>
+        <var addr="531" name="SESAM_SCVSInterSys1LifeSign" desc="(SCVSInterSys1 Message LifeSign) Life sign from SCVSInterSys1 message." type="uint16" len="1"/>
+        <var addr="533" name="SESAM_SCVSLastValidLifeSign" desc="(SCVSInterSys1 Message Last Valid LifeSign) Last valid life sign from SCVSInterSys1 message." type="uint16" len="1"/>
+        <var addr="535" name="SESAM_SCVSInterSys1ValidBit" desc="(SCVSInterSys1 Message Valid Bit) Valid bit from SCVSInterSys1 message." type="uint8" len="1"/>
+        <var addr="536" name="SESAM_UCVOParamCfgCtrlValidBit" desc="(UCVOInterSys1 Message Valid Bit) Valid bit from UCVOInterSys1 message." type="uint16" len="1"/>
+        <bitfield addr="538" desc="">
+            <bit number="0" name="SESAM_TrainMaintMode" desc="(Train Maintenance Mode) Is Train in maintenance mode? 0: No, 1: Yes" len="1"/>
+            <bit number="1" name="SESAM_PowerLossPending" desc="(Power Loss Pending) The SAM-SAC has reported a pending power loss. 0: No, 1: Yes" len="1"/>
+        </bitfield>
+        <var addr="539" name="SESAM_VIdStnFinale" desc="(VIdStnFinale) VIdStnFinale variable from SCVSInterSys1 message" type="uint8" len="1"/>
+        <var addr="540" name="SESAM_CPUutilization" desc="(SESAM CPU % Used) Percentage of CPU cycle time used by SESAM. (0-100)" type="uint8" len="1"/>
+        <var addr="541" name="SESAM_LastTimeUpdate" desc="(Last Update) The time of the last time update in UTC." type="uint32" len="1"/>
+        <var addr="545" name="SESAM_LifeSign" desc="(SESAM LifeSign) SESAM lifesign sent to SAM-SAC" type="uint16" len="1"/>
+        <var addr="547" name="SESAM_ValidBit" desc="(SESAM Valid Bit) SESAM valid bit sent to SAM-SAC" type="uint8" len="1"/>
+    </message>
+</data>
