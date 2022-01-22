@@ -10,7 +10,7 @@ export class AppComponent {
   title = 'cttoptu';
   list: any = [];
   varTag: any = {}
-
+ 
   load() {
     fetch('../assets/CTtoPTU.xml').then((response) => {
       response.text().then((xml) => {
@@ -19,30 +19,17 @@ export class AppComponent {
         for (var i = 0; i < vars.length; i++) {
           for (var j = 0; j < vars[i].children.length; j += 1) {
             if ((vars[i].children[j].nodeName) == "var") {
-              this.varTag = {
-                addr: vars[i].children[j].getAttribute("addr") ? vars[i].children[j].getAttribute("addr") : '',
-                name: vars[i].children[j].getAttribute("name") ? vars[i].children[j].getAttribute("name") : '',
-                type: vars[i].children[j].getAttribute("type") ? vars[i].children[j].getAttribute("type") : '',
-                value: null
-              }
-              this.list.push(this.varTag);
-            } else if ((vars[i].children[j].nodeName) == "bitfield") {
-              this.varTag = {
-                addr: vars[i].children[j].getAttribute("addr") ? vars[i].children[j].getAttribute("addr") : '',
-              }
+              this.varTag[String(vars[i].children[j].getAttribute("name"))] = null;
+            }
+            else if ((vars[i].children[j].nodeName) == "bitfield") {
               for (var k = 0; k < vars[i].children[j].children.length; k++) {
-                var bitChild = vars[i].children[j].children[k].getAttribute("number")
-                var bittag = new Map()
-                if (bitChild != null) {
-                  this.varTag[bitChild] = vars[i].children[j].children[k].attributes;
-                }
+                this.varTag[String(vars[i].children[j].children[k].getAttribute("name"))] = null
               }
-              this.list.push(this.varTag)
             }
           }
         }
-        console.log(this.list)
-        
+        console.log(this.varTag)
+
       });
     });
   }
